@@ -1,0 +1,182 @@
+[
+  {
+    "id": 1,
+    "name": "normal",
+    "doubleDamegeFrom": "fighting",
+    "doubleDamegeTo": "",
+    "halfDamegeFrom": "",
+    "halfDamegeTo": "rock,steel",
+    "noDamegeFrom": "ghost",
+    "noDamegeTo": "ghost"
+  },
+  {
+    "id": 2,
+    "name": "fighting",
+    "doubleDamegeFrom": "flying,psychic,fairy",
+    "doubleDamegeTo": "normal,rock,steel,ice,dark",
+    "halfDamegeFrom": "rock,bug,dark",
+    "halfDamegeTo": "flying,poison,bug,psychic,fairy",
+    "noDamegeFrom": "",
+    "noDamegeTo": "ghost"
+  },
+  {
+    "id": 3,
+    "name": "flying",
+    "doubleDamegeFrom": "rock,electric,ice",
+    "doubleDamegeTo": "fighting,bug,grass",
+    "halfDamegeFrom": "fighting,bug,grass",
+    "halfDamegeTo": "rock,steel,electric",
+    "noDamegeFrom": "ground",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 4,
+    "name": "poison",
+    "doubleDamegeFrom": "ground,psychic",
+    "doubleDamegeTo": "grass,fairy",
+    "halfDamegeFrom": "fighting,poison,bug,grass,fairy",
+    "halfDamegeTo": "poison,ground,rock,ghost",
+    "noDamegeFrom": "",
+    "noDamegeTo": "steel"
+  },
+  {
+    "id": 5,
+    "name": "ground",
+    "doubleDamegeFrom": "water,grass,ice",
+    "doubleDamegeTo": "poison,rock,steel,fire,electric",
+    "halfDamegeFrom": "poison,rock",
+    "halfDamegeTo": "bug,grass",
+    "noDamegeFrom": "electric",
+    "noDamegeTo": "flying"
+  },
+  {
+    "id": 6,
+    "name": "rock",
+    "doubleDamegeFrom": "fighting,ground,steel,water,grass",
+    "doubleDamegeTo": "flying,bug,fire,ice",
+    "halfDamegeFrom": "normal,flying,poison,fire",
+    "halfDamegeTo": "fighting,ground,steel",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 7,
+    "name": "bug",
+    "doubleDamegeFrom": "flying,rock,fire",
+    "doubleDamegeTo": "grass,psychic,dark",
+    "halfDamegeFrom": "fighting,ground,grass",
+    "halfDamegeTo": "fighting,flying,poison,ghost,steel,fire,fairy",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 8,
+    "name": "ghost",
+    "doubleDamegeFrom": "ghost,dark",
+    "doubleDamegeTo": "ghost,psychic",
+    "halfDamegeFrom": "poison,bug",
+    "halfDamegeTo": "dark",
+    "noDamegeFrom": "normal,fighting",
+    "noDamegeTo": "normal"
+  },
+  {
+    "id": 9,
+    "name": "steel",
+    "doubleDamegeFrom": "fighting,ground,fire",
+    "doubleDamegeTo": "rock,ice,fairy",
+    "halfDamegeFrom": "normal,flying,rock,bug,steel,grass,psychic,ice,dragon,fairy",
+    "halfDamegeTo": "steel,fire,water,electric",
+    "noDamegeFrom": "poison",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 10,
+    "name": "fire",
+    "doubleDamegeFrom": "ground,rock,water",
+    "doubleDamegeTo": "bug,steel,grass,ice",
+    "halfDamegeFrom": "bug,steel,fire,grass,ice,fairy",
+    "halfDamegeTo": "rock,fire,water,dragon",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 11,
+    "name": "water",
+    "doubleDamegeFrom": "grass,electric",
+    "doubleDamegeTo": "ground,rock,fire",
+    "halfDamegeFrom": "steel,fire,water,ice",
+    "halfDamegeTo": "water,grass,dragon",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 12,
+    "name": "grass",
+    "doubleDamegeFrom": "flying,poison,bug,fire,ice",
+    "doubleDamegeTo": "ground,rock,water",
+    "halfDamegeFrom": "ground,water,grass,electric",
+    "halfDamegeTo": "flying,poison,bug,steel,fire,grass,dragon",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 13,
+    "name": "electric",
+    "doubleDamegeFrom": "ground",
+    "doubleDamegeTo": "flying,water",
+    "halfDamegeFrom": "flying,steel,electric",
+    "halfDamegeTo": "grass,electric,dragon",
+    "noDamegeFrom": "",
+    "noDamegeTo": "ground"
+  },
+  {
+    "id": 14,
+    "name": "psychic",
+    "doubleDamegeFrom": "bug,ghost,dark",
+    "doubleDamegeTo": "fighting,poison",
+    "halfDamegeFrom": "fighting,psychic",
+    "halfDamegeTo": "steel,psychic",
+    "noDamegeFrom": "",
+    "noDamegeTo": "dark"
+  },
+  {
+    "id": 15,
+    "name": "ice",
+    "doubleDamegeFrom": "fighting,rock,steel,fire",
+    "doubleDamegeTo": "flying,ground,grass,dragon",
+    "halfDamegeFrom": "ice",
+    "halfDamegeTo": "steel,fire,water,ice",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 16,
+    "name": "dragon",
+    "doubleDamegeFrom": "ice,dragon,fairy",
+    "doubleDamegeTo": "dragon",
+    "halfDamegeFrom": "fire,water,grass,electric",
+    "halfDamegeTo": "steel",
+    "noDamegeFrom": "",
+    "noDamegeTo": "fairy"
+  },
+  {
+    "id": 17,
+    "name": "dark",
+    "doubleDamegeFrom": "fighting,bug,fairy",
+    "doubleDamegeTo": "ghost,psychic",
+    "halfDamegeFrom": "ghost,dark",
+    "halfDamegeTo": "fighting,dark,fairy",
+    "noDamegeFrom": "psychic",
+    "noDamegeTo": ""
+  },
+  {
+    "id": 18,
+    "name": "fairy",
+    "doubleDamegeFrom": "poison,steel",
+    "doubleDamegeTo": "fighting,dragon,dark",
+    "halfDamegeFrom": "fighting,bug,dark",
+    "halfDamegeTo": "poison,steel,fire",
+    "noDamegeFrom": "dragon",
+    "noDamegeTo": ""
+  }
+]
