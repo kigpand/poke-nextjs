@@ -1,3 +1,5 @@
+"use client";
+
 import { useBookmark } from "@/hooks/useBookmark";
 import { IPokemon } from "@/interface/IPokemon";
 import { cn } from "@/lib/utils";
