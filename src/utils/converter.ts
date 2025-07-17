@@ -1,23 +1,25 @@
-import NORMAL from "../svg/normal.svg";
-import AIR from "../svg/air.svg";
-import BUG from "../svg/bug.svg";
-import DARK from "../svg/dark.svg";
-import DRAGON from "../svg/dragon.svg";
-import EARTH from "../svg/earth.svg";
-import ELECTRIC from "../svg/electric.svg";
-import FAIRY from "../svg/fairy.svg";
-import FIGHTING from "../svg/fighting.svg";
-import FIRE from "../svg/fire.svg";
-import GHOST from "../svg/ghost.svg";
-import GRASS from "../svg/grass.svg";
-import ICE from "../svg/ice.svg";
-import IRON from "../svg/iron.svg";
-import MAGIC from "../svg/magic.svg";
-import POSION from "../svg/posion.svg";
-import ROCK from "../svg/rock.svg";
-import WATER from "../svg/water.svg";
+import NORMAL from "@/assets/svg/normal.svg";
+import AIR from "@/assets/svg/air.svg";
+import BUG from "@/assets/svg/bug.svg";
+import DARK from "@/assets/svg/dark.svg";
+import DRAGON from "@/assets/svg/dragon.svg";
+import EARTH from "@/assets/svg/earth.svg";
+import ELECTRIC from "@/assets/svg/electric.svg";
+import FAIRY from "@/assets/svg/fairy.svg";
+import FIGHTING from "@/assets/svg/fighting.svg";
+import FIRE from "@/assets/svg/fire.svg";
+import GHOST from "@/assets/svg/ghost.svg";
+import GRASS from "@/assets/svg/grass.svg";
+import ICE from "@/assets/svg/ice.svg";
+import IRON from "@/assets/svg/iron.svg";
+import MAGIC from "@/assets/svg/magic.svg";
+import POSION from "@/assets/svg/posion.svg";
+import ROCK from "@/assets/svg/rock.svg";
+import WATER from "@/assets/svg/water.svg";
 import type { SortType } from "@/types/SortType";
 import type { IServerType } from "@/interface/IServerType";
+import { IPrevPokemon } from "@/interface/IPrevPokemon";
+import { IPokemon } from "@/interface/IPokemon";
 
 export const MOBILE_SIZE = 412;
 
@@ -258,3 +260,46 @@ export const getDamegeType: any = {
   noFrom: "데미지를 받지않음",
   noTo: "데미지를 줄수없음",
 };
+
+export function convertPokeData(list: IPrevPokemon[]) {
+  const pokeList: IPokemon[] = [];
+  list.forEach((item: IPrevPokemon) => {
+    const abilities = item.abilities.split(",");
+    const types = getTypeConvertData(item.pokeTypes);
+    const stat = getStat(item.states);
+    pokeList.push({
+      id: item.id,
+      name: item.name,
+      weight: item.weight,
+      height: item.height,
+      flavor: item.flavor,
+      generate: item.generate,
+      imageUrl: item.imageUrl,
+      genus: item.genus,
+      abilities,
+      types,
+      ...stat,
+    });
+  });
+
+  return pokeList;
+}
+
+export function convertOnePoke(item: IPrevPokemon) {
+  const abilities = item.abilities.split(",");
+  const types = getTypeConvertData(item.pokeTypes);
+  const stat = getStat(item.states);
+  return {
+    id: item.id,
+    name: item.name,
+    weight: item.weight,
+    height: item.height,
+    flavor: item.flavor,
+    generate: item.generate,
+    imageUrl: item.imageUrl,
+    genus: item.genus,
+    abilities,
+    types,
+    ...stat,
+  };
+}
