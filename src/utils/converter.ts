@@ -36,119 +36,90 @@ interface IBackgroundColor {
   allStat: string;
 }
 
+const TYPE_DATA = {
+  water: { ko: "물", color: "#5185c5", lineColor: "#0267c2", icon: WATER },
+  grass: { ko: "풀", color: "#66a945", lineColor: "#389a02", icon: GRASS },
+  poison: { ko: "독", color: "#6b246e", lineColor: "#871dc5", icon: POSION },
+  fire: { ko: "불꽃", color: "#e56c3e", lineColor: "#b60000", icon: FIRE },
+  normal: { ko: "노말", color: "#ada594", lineColor: "#5a5a5a", icon: NORMAL },
+  electric: {
+    ko: "전기",
+    color: "#f6d851",
+    lineColor: "#e4d72a",
+    icon: ELECTRIC,
+  },
+  ice: { ko: "얼음", color: "#6dc8eb", lineColor: "#24dfe6", icon: ICE },
+  fighting: {
+    ko: "격투",
+    color: "#e09c40",
+    lineColor: "#973e15",
+    icon: FIGHTING,
+  },
+  ground: { ko: "땅", color: "#9c7743", lineColor: "#794b05", icon: EARTH },
+  flying: { ko: "비행", color: "#a2c3e7", lineColor: "#194ec0", icon: AIR },
+  psychic: {
+    ko: "에스퍼",
+    color: "#dd6b7b",
+    lineColor: "#f52ba1",
+    icon: MAGIC,
+  },
+  bug: { ko: "벌레", color: "#9fa244", lineColor: "#145a26", icon: BUG },
+  rock: { ko: "바위", color: "#bfb889", lineColor: "#816f1d", icon: ROCK },
+  ghost: { ko: "고스트", color: "#684870", lineColor: "#3d1877", icon: GHOST },
+  dragon: {
+    ko: "드래곤",
+    color: "#535ca8",
+    lineColor: "#434e8b",
+    icon: DRAGON,
+  },
+  dark: { ko: "악", color: "#4c4948", lineColor: "#383020", icon: DARK },
+  steel: { ko: "강철", color: "#69a9c7", lineColor: "#444444", icon: IRON },
+  fairy: { ko: "페어리", color: "#dab4d4", lineColor: "#ff18a7", icon: FAIRY },
+} as const;
+
+const DEFAULT_COLOR = "white";
+const DEFAULT_LINE_COLOR = "#ffffff";
+const DEFAULT_TYPE = "노말";
+const DEFAULT_ICON = NORMAL;
+
+const KO_TO_EN = Object.entries(TYPE_DATA).reduce((acc, [en, { ko }]) => {
+  acc[ko] = en;
+  return acc;
+}, {} as Record<string, string>);
+
+function normalizeType(type: string): keyof typeof TYPE_DATA {
+  if (TYPE_DATA[type as keyof typeof TYPE_DATA])
+    return type as keyof typeof TYPE_DATA;
+  return (KO_TO_EN[type] as keyof typeof TYPE_DATA) ?? "normal";
+}
+
 /** 속성에 맞는 색상 반환 함수 */
 export function getColor(type: string) {
-  if (type === "water" || type === "물") return "#5185c5";
-  if (type === "grass" || type === "풀") return "#66a945";
-  if (type === "poison" || type === "독") return "#6b246e";
-  if (type === "fire" || type === "불꽃") return "#e56c3e";
-  if (type === "normal" || type === "노말") return "#ada594";
-  if (type === "electric" || type === "전기") return "#f6d851";
-  if (type === "ice" || type === "얼음") return "#6dc8eb";
-  if (type === "fighting" || type === "격투") return "#e09c40";
-  if (type === "ground" || type === "땅") return "#9c7743";
-  if (type === "flying" || type === "비행") return "#a2c3e7";
-  if (type === "psychic" || type === "에스퍼") return "#dd6b7b";
-  if (type === "bug" || type === "벌레") return "#9fa244";
-  if (type === "rock" || type === "바위") return "#bfb889";
-  if (type === "ghost" || type === "고스트") return "#684870";
-  if (type === "dragon" || type === "드래곤") return "#535ca8";
-  if (type === "dark" || type === "악") return "#4c4948";
-  if (type === "steel" || type === "강철") return "#69a9c7";
-  if (type === "fairy" || type === "페어리") return "#dab4d4";
-  return "white";
+  const key = normalizeType(type);
+  return TYPE_DATA[key]?.color || DEFAULT_COLOR;
 }
 
 /** 속성에 맞는 border or line 색상 반환 함수 */
 export function getLineColor(type: string) {
-  if (type === "water" || type === "물") return "#0267c2";
-  if (type === "grass" || type === "풀") return "#389a02";
-  if (type === "poison" || type === "독") return "#871dc5";
-  if (type === "fire" || type === "불꽃") return "#b60000";
-  if (type === "normal" || type === "노말") return "#5a5a5a";
-  if (type === "electric" || type === "전기") return "#e4d72a";
-  if (type === "ice" || type === "얼음") return "#24dfe6";
-  if (type === "fighting" || type === "격투") return "#973e15";
-  if (type === "ground" || type === "땅") return "#794b05";
-  if (type === "flying" || type === "비행") return "#194ec0";
-  if (type === "psychic" || type === "에스퍼") return "#f52ba1";
-  if (type === "bug" || type === "벌레") return "#145a26";
-  if (type === "rock" || type === "바위") return "#816f1d";
-  if (type === "ghost" || type === "고스트") return "#3d1877";
-  if (type === "dragon" || type === "드래곤") return "#434e8b";
-  if (type === "dark" || type === "악") return "#383020";
-  if (type === "steel" || type === "강철") return "#444444";
-  if (type === "fairy" || type === "페어리") return "#ff18a7";
-  return "#ffffff";
+  const key = normalizeType(type);
+  return TYPE_DATA[key]?.lineColor || DEFAULT_LINE_COLOR;
 }
 
 /** 영어 이름에 맞는 한글 속성 반환 함수  */
 export function getTypeKo(type: string) {
-  if (type === "water") return "물";
-  if (type === "grass") return "풀";
-  if (type === "poison") return "독";
-  if (type === "fire") return "불꽃";
-  if (type === "normal") return "노말";
-  if (type === "electric") return "전기";
-  if (type === "ice") return "얼음";
-  if (type === "fighting") return "격투";
-  if (type === "ground") return "땅";
-  if (type === "flying") return "비행";
-  if (type === "psychic") return "에스퍼";
-  if (type === "bug") return "벌레";
-  if (type === "rock") return "바위";
-  if (type === "ghost") return "고스트";
-  if (type === "dragon") return "드래곤";
-  if (type === "dark") return "악";
-  if (type === "steel") return "강철";
-  if (type === "fairy") return "페어리";
-  return "노말";
+  const key = normalizeType(type);
+  return TYPE_DATA[key]?.ko || DEFAULT_TYPE;
 }
 
 /** 한글 이름에 맞는 영어 타입 반환 함수 */
 export function getTypeEn(type: string) {
-  if (type === "물") return "water";
-  if (type === "풀") return "grass";
-  if (type === "독") return "poison";
-  if (type === "불꽃") return "fire";
-  if (type === "노말") return "normal";
-  if (type === "전기") return "electric";
-  if (type === "얼음") return "ice";
-  if (type === "격투") return "fighting";
-  if (type === "땅") return "ground";
-  if (type === "비행") return "flying";
-  if (type === "에스퍼") return "psychic";
-  if (type === "벌레") return "bug";
-  if (type === "바위") return "rock";
-  if (type === "고스트") return "ghost";
-  if (type === "드래곤") return "dragon";
-  if (type === "악") return "dark";
-  if (type === "강철") return "steel";
-  if (type === "페어리") return "fairy";
-  return "노말";
+  return normalizeType(type);
 }
 
 /** 타입에 해당하는 아이콘 반환 함수  */
 export function getTypeIcon(type: string) {
-  if (type === "water" || type === "물") return WATER;
-  if (type === "grass" || type === "풀") return GRASS;
-  if (type === "poison" || type === "독") return POSION;
-  if (type === "fire" || type === "불꽃") return FIRE;
-  if (type === "normal" || type === "노말") return NORMAL;
-  if (type === "electric" || type === "전기") return ELECTRIC;
-  if (type === "ice" || type === "얼음") return ICE;
-  if (type === "fighting" || type === "격투") return FIGHTING;
-  if (type === "ground" || type === "땅") return EARTH;
-  if (type === "flying" || type === "비행") return AIR;
-  if (type === "psychic" || type === "에스퍼") return MAGIC;
-  if (type === "bug" || type === "벌레") return BUG;
-  if (type === "rock" || type === "바위") return ROCK;
-  if (type === "ghost" || type === "고스트") return GHOST;
-  if (type === "dragon" || type === "드래곤") return DRAGON;
-  if (type === "dark" || type === "악") return DARK;
-  if (type === "steel" || type === "강철") return IRON;
-  if (type === "fairy" || type === "페어리") return FAIRY;
-  return "노말";
+  const key = normalizeType(type);
+  return TYPE_DATA[key]?.icon.src || DEFAULT_ICON;
 }
 
 /** detail page status bar 색상 반환 함수 */
@@ -168,6 +139,7 @@ export function getStatusBarColor(name: string) {
 
 export function getStat(stat: string) {
   const items = stat.split(",");
+
   const allCount =
     Number(items[1]) +
     Number(items[3]) +
@@ -210,45 +182,18 @@ export function getTypeConvertData(typeInfo: string) {
 
 /** 타입의 반감, 2배, 노데미지 판정 확인해서 반환해주는 함수 */
 export function typeConvertDamegeData(typeData: IServerType) {
-  const name = getTypeKo(typeData.name);
-  const doubleFrom =
-    typeData.doubleDamegeFrom !== ""
-      ? typeData.doubleDamegeFrom.split(",").map((v: string) => {
-          return getTypeKo(v);
-        })
-      : [];
-  const doubleTo =
-    typeData.doubleDamegeTo !== ""
-      ? typeData.doubleDamegeTo.split(",").map((v: string) => {
-          return getTypeKo(v);
-        })
-      : [];
-  const halfFrom =
-    typeData.halfDamegeFrom !== ""
-      ? typeData.halfDamegeFrom.split(",").map((v: string) => {
-          return getTypeKo(v);
-        })
-      : [];
-  const halfTo =
-    typeData.halfDamegeTo !== ""
-      ? typeData.halfDamegeTo.split(",").map((v: string) => {
-          return getTypeKo(v);
-        })
-      : [];
-  const noFrom =
-    typeData.noDamegeFrom !== ""
-      ? typeData.noDamegeFrom.split(",").map((v: string) => {
-          return getTypeKo(v);
-        })
-      : [];
-  const noTo =
-    typeData.noDamegeTo !== ""
-      ? typeData.noDamegeTo.split(",").map((v: string) => {
-          return getTypeKo(v);
-        })
-      : [];
+  const convert = (data: string) =>
+    data ? data.split(",").map(getTypeKo) : [];
 
-  return { name, doubleFrom, doubleTo, halfFrom, halfTo, noFrom, noTo };
+  return {
+    name: getTypeKo(typeData.name),
+    doubleFrom: convert(typeData.doubleDamegeFrom),
+    doubleTo: convert(typeData.doubleDamegeTo),
+    halfFrom: convert(typeData.halfDamegeFrom),
+    halfTo: convert(typeData.halfDamegeTo),
+    noFrom: convert(typeData.noDamegeFrom),
+    noTo: convert(typeData.noDamegeTo),
+  };
 }
 
 /** 데미지 한글이름 반환 */

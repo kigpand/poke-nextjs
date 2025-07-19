@@ -43,4 +43,19 @@ body {
   .animate-fade-in {
     animation: fade-in 0.2s linear forwards;
   }
+
+  @keyframes type-anim {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .type-anim {
+    animation: type-anim 0.2s linear forwards;
+  }
 }
