@@ -1,5 +1,7 @@
+"use client";
+
 import { createPortal } from "react-dom";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 type Props = {
   component: React.ReactNode;
@@ -7,6 +9,17 @@ type Props = {
 };
 
 export default function ModalPortal({ component, handleCloseModal }: Props) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
+  const portalRoot = document.getElementById("overlay-root");
+  if (!portalRoot) return null;
+
   return createPortal(
     <section className="fixed top-0 left-0 w-screen h-full min-h-screen bg-black/40 flex items-center justify-center animate-fade-in">
       {component}
@@ -15,6 +28,6 @@ export default function ModalPortal({ component, handleCloseModal }: Props) {
         onClick={handleCloseModal}
       ></div>
     </section>,
-    document.getElementById("overlay-root")!
+    portalRoot
   );
 }
