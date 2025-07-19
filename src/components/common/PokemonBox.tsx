@@ -9,7 +9,7 @@ type Props = {
   pokemon: IPokemon;
 };
 
-export default function PokemonBox({ pokemon }: Props) {
+export function PokemonBox({ pokemon }: Props) {
   const { findBookmark } = useBookmark();
   return (
     <li
