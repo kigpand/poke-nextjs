@@ -2,14 +2,11 @@ import { IPokemon } from "@/interface/IPokemon";
 import { useCallback } from "react";
 
 export function usePokeStorage() {
-  const setCurrentPokeStorage = useCallback(
-    (list: IPokemon) => {
-      sessionStorage.setItem("currentPoke", JSON.stringify(list));
-      if (!location.pathname.includes("detail")) {
-      }
-    },
-    [location]
-  );
+  const setCurrentPokeStorage = useCallback((list: IPokemon) => {
+    sessionStorage.setItem("currentPoke", JSON.stringify(list));
+    // if (!location.pathname.includes("detail")) {
+    // }
+  }, []);
 
   const getCurrentPokeStorage = useCallback(() => {
     const item = sessionStorage.getItem("currentPoke");
