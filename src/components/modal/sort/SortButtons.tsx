@@ -43,34 +43,6 @@ export function SortButtons({ type, list, handleCloseButton }: Props) {
     handleCloseButton();
   };
 
-  const onSortBy = (type: SortType) => {
-    const list: IPokemon[] = convertPokeData(
-      JSON.parse(JSON.stringify(pokemonList))
-    );
-    let filteredData: IPokemon[] = list.sort((a, b) => b[type] - a[type]);
-
-    if (filteredData?.length > 0) {
-      handlePokemonList(filteredData);
-      handleChangeCurrentPoke(filteredData.slice(0, 20));
-    }
-
-    handleCloseButton();
-  };
-
-  const onReverseSortBy = (type: SortType) => {
-    const list: IPokemon[] = convertPokeData(
-      JSON.parse(JSON.stringify(pokemonList))
-    );
-    const filteredData: IPokemon[] = list.sort((a, b) => a[type] - b[type]);
-
-    if (filteredData?.length > 0) {
-      handlePokemonList(filteredData);
-      handleChangeCurrentPoke(filteredData.slice(0, 20));
-    }
-
-    handleCloseButton();
-  };
-
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer hover:font-bold";
 
@@ -107,24 +79,6 @@ export function SortButtons({ type, list, handleCloseButton }: Props) {
             </li>
           );
         })}
-      {!list && (
-        <li
-          role="button"
-          className={cn(list_style, "text-black border-gray-300")}
-          onClick={() => onSortBy(type as SortType)}
-        >
-          높은 순
-        </li>
-      )}
-      {!list && (
-        <li
-          role="button"
-          className={cn(list_style, "text-black border-gray-300")}
-          onClick={() => onReverseSortBy(type as SortType)}
-        >
-          낮은 순
-        </li>
-      )}
     </ul>
   );
 }
