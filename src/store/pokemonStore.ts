@@ -15,11 +15,12 @@ export const usePokemonStore = create<{
   resetCurrentList: () => void;
 }>((set, get) => ({
   pokemonList: convertPokeData(pokemonList),
-  currentPoke: [],
+  currentPoke: convertPokeData(pokemonList).slice(0, 20),
   setPokemonList: (pokemonList) => set({ pokemonList }),
   setCurrentList: (currentPoke) => set({ currentPoke }),
   addCurrentList: (list: IPokemon[]) => {
     set({ currentPoke: [...get().currentPoke, ...list] });
   },
-  resetCurrentList: () => set({ currentPoke: [] }),
+  resetCurrentList: () =>
+    set({ currentPoke: convertPokeData(pokemonList).slice(0, 20) }),
 }));

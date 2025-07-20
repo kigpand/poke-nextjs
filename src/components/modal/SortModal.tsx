@@ -4,7 +4,7 @@ import pokemonList from "@/json/pokemonList.json";
 import { convertPokeData } from "@/utils/converter";
 import { useCurrentPokemon, usePokemonList } from "@/hooks";
 import { SortSelect } from "./sort/SortSelect";
-import { SortButtons } from "./sort/SortButton";
+import { SortButtons } from "./sort/SortButtons";
 import { typeList, geneList } from "@/utils/sort";
 
 type Props = {
@@ -25,6 +25,7 @@ export function SortModal({ handleCloseModal }: Props) {
 
   return (
     <ModalPortal
+      handleCloseModal={handleCloseModal}
       component={
         <article className="bg-background text-foreground w-[300px] pt-2 pb-5 px-2 border border-foreground rounded-lg">
           <SortSelect handleCloseButton={handleCloseModal} />
@@ -40,9 +41,20 @@ export function SortModal({ handleCloseModal }: Props) {
             list={geneList}
             handleCloseButton={handleCloseModal}
           />
+          <button
+            className="w-full rounded-sm h-[30px] text-xs font-bold cursor-pointer"
+            onClick={handleCloseModal}
+          >
+            닫기
+          </button>
+          <button
+            className="w-full rounded-sm h-[30px] text-xs font-bold cursor-pointer"
+            onClick={onResetBtn}
+          >
+            초기화
+          </button>
         </article>
       }
-      handleCloseModal={handleCloseModal}
     />
   );
 }

@@ -53,7 +53,6 @@ export function SortButtons({ title, list, type, handleCloseButton }: Props) {
         {type === "type" &&
           list &&
           list.map((type: string, i: number) => {
-            console.log(type);
             return (
               <li
                 role="button"
