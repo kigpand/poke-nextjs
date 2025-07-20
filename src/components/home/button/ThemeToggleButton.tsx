@@ -22,13 +22,15 @@ export function ThemeToggleButton() {
   }, []);
 
   return (
-    <button className="bg-foreground cursor-pointer border border-gray-400 p-1 rounded-xl">
+    <button
+      className="w-[40px] h-[40px] bg-foreground cursor-pointer border border-gray-400 p-1 rounded-xl"
+      onClick={toggleTheme}
+    >
       <Image
         src={isDark ? "/img/sun.png" : "/img/moon.png"}
         alt="img"
         width={30}
         height={30}
-        onClick={toggleTheme}
       />
     </button>
   );
