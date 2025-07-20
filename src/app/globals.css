@@ -2,7 +2,12 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #000000;
+}
+
+.dark {
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -23,4 +28,44 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.2s linear forwards;
+  }
+
+  @keyframes type-anim {
+    0% {
+      opacity: 0;
+      transform: translateY(-5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .type-anim {
+    animation: type-anim 0.2s linear forwards;
+  }
+
+  .theme-transition {
+    transition: background-color 0.3s, color 0.3s;
+  }
+
+  .pokemon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }

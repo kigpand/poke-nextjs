@@ -1,3 +1,11 @@
+import Header from "@/components/home/Header";
+import PokemonLists from "@/components/home/PokemonLists";
+
 export default function Home() {
-  return <div className="">setting</div>;
+  return (
+    <main className="w-full h-full flex flex-col items-center relative">
+      <Header />
+      <PokemonLists />
+    </main>
+  );
 }
