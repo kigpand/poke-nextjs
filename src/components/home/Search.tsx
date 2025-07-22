@@ -21,7 +21,7 @@ export default function Search() {
       <Image src="/img/logo.png" alt="logo" width={150} height={50} />
       <input
         type="text"
-        className="border-none bg-gray-300 w-[300px] h-8 text-xs font-semibold rounded-2xl py-1 px-2"
+        className="border-none bg-gray-300 w-[200px] h-8 text-xs font-semibold rounded-2xl py-1 px-2 md:w-[300px]"
         ref={searchRef}
         placeholder="도감번호나 이름을 입력해주세요"
         onKeyDown={onSearch}

@@ -8,8 +8,10 @@ export default function Header() {
     <header className="w-[90%] h-1/5 flex justify-between relative mb-2 py-7">
       <TypeButton />
       <Search />
-      <div className="flex gap-1">
-        <ThemeToggleButton />
+      <div
+        className="flex gap-1 items-start flex-wrap justify-end"
+        style={{ alignContent: "flex-start" }}
+      >
         <SortButton />
         <Link
           href="/book"
@@ -17,6 +19,7 @@ export default function Header() {
         >
           <BsFillBookmarkPlusFill className="w-[30px] h-[30px]" />
         </Link>
+        <ThemeToggleButton />
       </div>
     </header>
   );
