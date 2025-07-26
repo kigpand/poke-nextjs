@@ -1,19 +1,21 @@
 "use client";
 
-import { usePokeStorage } from "@/hooks/usePokeStorage";
 import { IPokemon } from "@/interface/IPokemon";
 import { handleSearch } from "@/utils/search";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { FormEvent } from "react";
 import { useRef } from "react";
 
 export default function Search() {
   const searchRef = useRef<HTMLInputElement>(null);
-  const { setCurrentPokeStorage } = usePokeStorage();
+  const router = useRouter();
 
   function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    handleSearch(searchRef, (poke: IPokemon) => setCurrentPokeStorage(poke));
+    handleSearch(searchRef, (poke: IPokemon) =>
+      router.push(`detail?id=${poke.id}`)
+    );
   }
 
   return (
