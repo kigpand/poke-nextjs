@@ -1,11 +1,11 @@
 import { IPokemon } from "@/interface/IPokemon";
 import { usePokemonStore } from "@/store/pokemonStore";
 
-export function useCurrentPokemon() {
-  const { currentPoke, setCurrentList, addCurrentList, resetCurrentList } =
+export function useCurrentPokemonList() {
+  const { currentList, setCurrentList, addCurrentList, resetCurrentList } =
     usePokemonStore();
 
-  function handleChangeCurrentPoke(list: IPokemon[]) {
+  function handleChangeCurrentPokeList(list: IPokemon[]) {
     setCurrentList(list);
   }
 
@@ -14,8 +14,8 @@ export function useCurrentPokemon() {
   }
 
   return {
-    currentPoke,
-    handleChangeCurrentPoke,
+    currentList,
+    handleChangeCurrentPokeList,
     handleAddCurrentList,
     resetCurrentList,
   };
