@@ -4,7 +4,7 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { convertPokeData } from "@/utils/converter";
 import { IPokemon } from "@/interface/IPokemon";
-import { useCurrentPokemon, usePokemonList } from "@/hooks";
+import { useCurrentPokemonList, usePokemonList } from "@/hooks";
 import pokemonList from "@/json/pokemonList.json";
 
 type Props = {
@@ -14,7 +14,7 @@ type Props = {
 export function SortSelect({ handleCloseButton }: Props) {
   const [select, setSelect] = useState<SortType>("id");
   const { handlePokemonList } = usePokemonList();
-  const { handleChangeCurrentPoke } = useCurrentPokemon();
+  const { handleChangeCurrentPokeList } = useCurrentPokemonList();
 
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer hover:font-bold";
@@ -27,7 +27,7 @@ export function SortSelect({ handleCloseButton }: Props) {
 
     if (filteredData?.length > 0) {
       handlePokemonList(filteredData);
-      handleChangeCurrentPoke(filteredData.slice(0, 20));
+      handleChangeCurrentPokeList(filteredData.slice(0, 20));
     }
 
     handleCloseButton();
@@ -41,7 +41,7 @@ export function SortSelect({ handleCloseButton }: Props) {
 
     if (filteredData?.length > 0) {
       handlePokemonList(filteredData);
-      handleChangeCurrentPoke(filteredData.slice(0, 20));
+      handleChangeCurrentPokeList(filteredData.slice(0, 20));
     }
 
     handleCloseButton();

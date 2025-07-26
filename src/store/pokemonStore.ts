@@ -8,19 +8,19 @@ import { convertPokeData } from "@/utils/converter";
  */
 export const usePokemonStore = create<{
   pokemonList: IPokemon[];
-  currentPoke: IPokemon[];
+  currentList: IPokemon[];
   setPokemonList: (list: IPokemon[]) => void;
   setCurrentList: (list: IPokemon[]) => void;
   addCurrentList: (list: IPokemon[]) => void;
   resetCurrentList: () => void;
 }>((set, get) => ({
   pokemonList: convertPokeData(pokemonList),
-  currentPoke: convertPokeData(pokemonList).slice(0, 20),
+  currentList: convertPokeData(pokemonList).slice(0, 20),
   setPokemonList: (pokemonList) => set({ pokemonList }),
-  setCurrentList: (currentPoke) => set({ currentPoke }),
+  setCurrentList: (currentList) => set({ currentList }),
   addCurrentList: (list: IPokemon[]) => {
-    set({ currentPoke: [...get().currentPoke, ...list] });
+    set({ currentList: [...get().currentList, ...list] });
   },
   resetCurrentList: () =>
-    set({ currentPoke: convertPokeData(pokemonList).slice(0, 20) }),
+    set({ currentList: convertPokeData(pokemonList).slice(0, 20) }),
 }));

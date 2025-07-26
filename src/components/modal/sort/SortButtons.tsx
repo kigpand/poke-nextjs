@@ -7,7 +7,7 @@ import {
   getTypeConvertData,
   getTypeKo,
 } from "@/utils/converter";
-import { useCurrentPokemon, usePokemonList } from "@/hooks";
+import { useCurrentPokemonList, usePokemonList } from "@/hooks";
 import pokemonList from "@/json/pokemonList.json";
 
 type Props = {
@@ -19,7 +19,7 @@ type Props = {
 
 export function SortButtons({ title, list, type, handleCloseButton }: Props) {
   const { handlePokemonList } = usePokemonList();
-  const { handleChangeCurrentPoke } = useCurrentPokemon();
+  const { handleChangeCurrentPokeList } = useCurrentPokemonList();
 
   const onSort = (sortData: string, type: string) => {
     let filteredData = [];
@@ -37,7 +37,7 @@ export function SortButtons({ title, list, type, handleCloseButton }: Props) {
     if (filteredData?.length > 0) {
       const setting = convertPokeData(filteredData);
       handlePokemonList(setting);
-      handleChangeCurrentPoke(setting.slice(0, 20));
+      handleChangeCurrentPokeList(setting.slice(0, 20));
     }
 
     handleCloseButton();
