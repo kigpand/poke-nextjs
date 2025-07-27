@@ -17,3 +17,15 @@ export interface IPokemon {
   speed: number;
   allStat: number;
 }
+
+export interface IMegaPokemon {
+  id: number;
+  name: string;
+  imageUrl: string;
+  states: string;
+  abilities: string;
+  pokeTypes: string;
+  weight: number;
+  height: number;
+  genus: string;
+}
