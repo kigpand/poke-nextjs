@@ -166,6 +166,7 @@ const TYPE_DATA = {
 
 const DEFAULT_COLOR = "white";
 const DEFAULT_LINE_COLOR = "#ffffff";
+const DEFAULT_TEXT_COLOR = "#000000";
 const DEFAULT_TYPE = "노말";
 const DEFAULT_ICON = NORMAL;
 
@@ -190,6 +191,12 @@ export function getColor(type: string) {
 export function getLineColor(type: string) {
   const key = normalizeType(type);
   return TYPE_DATA[key]?.lineColor || DEFAULT_LINE_COLOR;
+}
+
+/** 속성에 맞는 텍스트 색상 반환 함수 */
+export function getTextColor(type: string) {
+  const key = normalizeType(type);
+  return TYPE_DATA[key]?.textColor || DEFAULT_TEXT_COLOR;
 }
 
 /** 영어 이름에 맞는 한글 속성 반환 함수  */
