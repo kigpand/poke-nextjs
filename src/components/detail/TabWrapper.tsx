@@ -48,11 +48,13 @@ export default function TabWrapper({ pokemon }: Props) {
             </div>
             <div className="text-sm text-muted-foreground flex">
               <label className="w-10 font-bold">타입:</label>
-              {pokemon.types?.map((t) => (
-                <span key={t} className="inline-block">
-                  <TypeBadge type={t} />
-                </span>
-              ))}
+              <ul className="flex gap-1">
+                {pokemon.types?.map((t) => (
+                  <li key={t} className="inline-block">
+                    <TypeBadge type={t} />
+                  </li>
+                ))}
+              </ul>
             </div>
           </CardContent>
         </Card>

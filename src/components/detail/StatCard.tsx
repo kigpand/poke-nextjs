@@ -1,3 +1,5 @@
+"use client";
+
 import { IPokemon } from "@/interface/IPokemon";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Progress } from "../ui/progress";
@@ -8,6 +10,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   Radar,
+  PolarRadiusAxis,
 } from "recharts";
 
 type Props = {
@@ -45,7 +48,10 @@ function StatsRadar({ p }: { p: IPokemon }) {
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={data} outerRadius="80%">
           <PolarGrid />
+          {/* 각 축의 라벨 */}
           <PolarAngleAxis dataKey="stat" />
+          {/* 반지름(값) 축의 범위 고정 */}
+          <PolarRadiusAxis domain={[0, 200]} tickCount={6} tick={false} />
           <Radar
             dataKey="val"
             stroke={strokeColor}
