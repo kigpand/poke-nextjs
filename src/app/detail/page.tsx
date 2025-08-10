@@ -1,34 +1,59 @@
 import AboutCard from "@/components/detail/AboutCard";
-import DetailHeader from "@/components/detail/DetailHeader";
 import ImageCard from "@/components/detail/ImageCard";
 import StatCard from "@/components/detail/StatCard";
 import TabWrapper from "@/components/detail/TabWrapper";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import pokemonList from "@/json/pokemonList.json";
+import megaList from "@/json/mega.json";
 import { convertOnePoke } from "@/utils/converter";
+import DetailHeader from "@/components/detail/DetailHeader";
 
 type SearchParams = {
   id: string;
-  isMega?: boolean;
-  isDymax?: boolean;
+  isMega?: string;
 };
-
-type Props = {
-  searchParams: Promise<SearchParams>;
-};
+type Props = { searchParams: Promise<SearchParams> };
 
 export default async function Detail({ searchParams }: Props) {
   const params = await searchParams;
-  const find = pokemonList.find((poke) => poke.id === Number(params.id));
+  const idNum = Number(params.id);
+  const isMega = params.isMega && params.isMega === "true";
 
+  const find = pokemonList.find((poke) => poke.id === Number(params.id));
   if (!find) return <div>오류가 발생했습니다.</div>;
-  const pokemon = convertOnePoke(find);
+
+  let pokemon = convertOnePoke(find);
+  if (isMega) {
+    const mega = megaList.find((m) => m.id === idNum);
+    if (mega) {
+      const src = `/api/poke-image?url=${encodeURIComponent(mega.imageUrl)}`;
+      pokemon = convertOnePoke({
+        ...mega,
+        imageUrl: src,
+        flavor: find.flavor,
+        generate: find.generate,
+      });
+    }
+  }
+
+  const idx = pokemonList.findIndex((p) => p.id === idNum);
+  const prevId = idx > 0 ? pokemonList[idx - 1].id : undefined;
+  const nextId =
+    idx < pokemonList.length - 1 ? pokemonList[idx + 1].id : undefined;
+
+  const hasMega = megaList.some((m) => m.id === idNum);
 
   return (
     <TooltipProvider>
       <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
-        {/* Header */}
-        <DetailHeader pokemon={pokemon} />
+        <DetailHeader
+          pokemon={pokemon}
+          prevId={prevId}
+          nextId={nextId}
+          hasMega={hasMega}
+          isMega={!!isMega}
+        />
+
         <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
           <div className="md:col-span-5 lg:col-span-4">
             <ImageCard pokemon={pokemon} />
