@@ -4,6 +4,7 @@ import { Separator } from "../ui/separator";
 import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Badge } from "../ui/badge";
 import { IPokemon } from "@/interface/IPokemon";
+import abililty from "@/json/ability.json";
 
 type Props = {
   pokemon: IPokemon;
@@ -54,7 +55,9 @@ export default function AboutCard({ pokemon }: Props) {
                     {ab}
                   </Badge>
                 </TooltipTrigger>
-                <TooltipContent>Ability: {ab}</TooltipContent>
+                <TooltipContent>
+                  {abililty.find((abil) => abil.name === ab)?.text}
+                </TooltipContent>
               </Tooltip>
             ))}
           </div>
