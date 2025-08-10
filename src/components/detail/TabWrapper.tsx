@@ -2,6 +2,7 @@ import { Card, CardContent } from "../ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import {
   getColor,
+  getLineColor,
   getTextColor,
   getTypeKo,
   typeConvertDamegeData,
@@ -107,7 +108,11 @@ export default function TabWrapper({ pokemon }: Props) {
       </TabsList>
 
       <TabsContent value="about" className="mt-4">
-        <Card>
+        <Card
+          style={{
+            borderColor: getLineColor(pokemon.types ? pokemon.types[0] : ""),
+          }}
+        >
           <CardContent className="space-y-3 p-4">
             <div className="text-sm text-muted-foreground flex">
               <label className="w-10 font-bold">분류:</label>

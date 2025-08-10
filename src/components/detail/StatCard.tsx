@@ -66,7 +66,12 @@ function StatsRadar({ p }: { p: IPokemon }) {
 
 export default function StatCard({ pokemon }: Props) {
   return (
-    <Card className="mb-6">
+    <Card
+      className="mb-6"
+      style={{
+        borderColor: getLineColor(pokemon.types ? pokemon.types[0] : ""),
+      }}
+    >
       <CardHeader className="pb-2">
         <CardTitle className="flex items-center justify-between text-lg">
           Base Stats

@@ -5,6 +5,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
 import { Badge } from "../ui/badge";
 import { IPokemon } from "@/interface/IPokemon";
 import abililty from "@/json/ability.json";
+import { getLineColor } from "@/utils/converter";
 
 type Props = {
   pokemon: IPokemon;
@@ -12,7 +13,11 @@ type Props = {
 
 export default function AboutCard({ pokemon }: Props) {
   return (
-    <Card>
+    <Card
+      style={{
+        borderColor: getLineColor(pokemon.types ? pokemon.types[0] : ""),
+      }}
+    >
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-lg">
           <Info className="h-5 w-5" /> About
