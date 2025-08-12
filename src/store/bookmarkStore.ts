@@ -8,6 +8,7 @@ export const useBookmarkStore = create<{
   bookmarkList: IPokemon[];
   addBookmarkItem: (item: IPokemon) => void;
   removeBookmarkItem: (item: IPokemon) => void;
+  clearBookmark: () => void;
 }>((set, get) => ({
   bookmarkList: [],
   addBookmarkItem: (item) => {
@@ -22,4 +23,9 @@ export const useBookmarkStore = create<{
     set({
       bookmarkList: get().bookmarkList.filter((list) => list.id !== item.id),
     }),
+  clearBookmark: () => {
+    set({
+      bookmarkList: [],
+    });
+  },
 }));
