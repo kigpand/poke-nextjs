@@ -5,8 +5,7 @@ import Link from "next/link";
 import { useMemo } from "react";
 import { Button } from "../ui/button";
 import { Home, Trash2 } from "lucide-react";
-
-const MAX_CAPACITY = 6;
+import { MAX_CAPACITY } from "@/constants/book";
 
 export function Header() {
   const { bookmarkList, clearBookmark } = useBookmark();

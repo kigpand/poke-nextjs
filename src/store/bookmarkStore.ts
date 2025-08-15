@@ -1,3 +1,4 @@
+import { MAX_CAPACITY } from "@/constants/book";
 import { IPokemon } from "@/interface/IPokemon";
 import { create } from "zustand";
 
@@ -13,7 +14,7 @@ export const useBookmarkStore = create<{
   bookmarkList: [],
   addBookmarkItem: (item) => {
     const bookmarkList = get().bookmarkList;
-    if (bookmarkList.length > 5) {
+    if (bookmarkList.length > MAX_CAPACITY - 1) {
       bookmarkList.shift();
     }
     bookmarkList.push(item);

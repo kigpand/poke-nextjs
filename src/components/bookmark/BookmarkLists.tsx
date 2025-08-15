@@ -6,8 +6,7 @@ import { Button } from "../ui/button";
 import { PokemonBox } from "../common";
 import { IPokemon } from "@/interface/IPokemon";
 import { X } from "lucide-react";
-
-const MAX_CAPACITY = 6;
+import { MAX_CAPACITY } from "@/constants/book";
 
 function RemovableCard({
   pokemon,
@@ -46,7 +45,7 @@ export function BookmarkLists() {
       </Link>
     </div>
   ) : (
-    <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-3">
+    <div className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))]">
       {bookmarkList.map((pokemon) => (
         <RemovableCard
           key={pokemon.id}
