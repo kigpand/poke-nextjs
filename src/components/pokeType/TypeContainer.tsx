@@ -1,5 +1,8 @@
+"use client";
+
 import { cn } from "@/lib/utils";
-import { getTypeEn, getTypeIcon } from "@/utils/converter";
+import { getColor, getTypeEn, getTypeIcon } from "@/utils/converter";
+import { useRouter } from "next/navigation";
 
 type Props = {
   isFrom: boolean;
@@ -8,6 +11,12 @@ type Props = {
 };
 
 export default function TypeContainer({ isFrom, title, list }: Props) {
+  const router = useRouter();
+
+  function onTypeClick(type: string) {
+    router.push(`/type?type=${getTypeEn(type)}`);
+  }
+
   return (
     <section
       className={cn(
@@ -26,11 +35,28 @@ export default function TypeContainer({ isFrom, title, list }: Props) {
       {list.length ? (
         <div className="flex flex-wrap gap-2">
           {list.map((t) => (
-            <img
-              src={getTypeIcon(getTypeEn(t))}
+            <div
               key={t}
-              className="w-[40px] h-[40px]"
-            />
+              className="relative flex items-center justify-center group"
+            >
+              <img
+                src={getTypeIcon(getTypeEn(t))}
+                className="icon cursor-pointer h-[40px] object-contain rounded-md"
+                onClick={() => onTypeClick(t)}
+              />
+              <p
+                className="
+                arrow_box absolute top-[45px] hidden w-[40px] rounded-md 
+                px-0 py-1 text-center text-[12px] text-white z-[100] whitespace-nowrap
+                group-hover:block bg-gray-800
+              "
+                style={{
+                  backgroundColor: getColor(t),
+                }}
+              >
+                {t}
+              </p>
+            </div>
           ))}
         </div>
       ) : (
