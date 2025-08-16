@@ -5,7 +5,7 @@ import { useBookmarkStore } from "@/store/bookmarkStore";
  * 도감용 훅
  */
 export function useBookmark() {
-  const { bookmarkList, addBookmarkItem, removeBookmarkItem } =
+  const { bookmarkList, addBookmarkItem, removeBookmarkItem, clearBookmark } =
     useBookmarkStore();
 
   function addBookmark(pokeItem: IPokemon, callback: Function) {
@@ -28,5 +28,11 @@ export function useBookmark() {
     removeBookmarkItem(item);
   }
 
-  return { addBookmark, findBookmark, removeBookmark };
+  return {
+    bookmarkList,
+    addBookmark,
+    findBookmark,
+    removeBookmark,
+    clearBookmark,
+  };
 }
