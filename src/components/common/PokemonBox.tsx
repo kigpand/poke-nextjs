@@ -22,9 +22,7 @@ export function PokemonBox({ pokemon }: Props) {
     <li
       className={cn(
         "w-full h-[200px] p-1 flex flex-col cursor-pointer border hover:bg-gray-200",
-        findBookmark(pokemon)
-          ? `border-[${getColor(pokemon.types![0])}]`
-          : "border-[#e8e8e8]"
+        findBookmark(pokemon) ? `border-red-700 border-2` : "border-[#e8e8e8]"
       )}
       onClick={handleBoxClick}
     >

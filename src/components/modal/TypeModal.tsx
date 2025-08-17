@@ -2,18 +2,18 @@
 
 import ModalPortal from "@/portal/ModalPortal";
 import types from "@/json/types.json";
-import { useTypeStorage } from "@/hooks/useTypeStorage";
 import { getTypeIcon, getTypeKo } from "@/utils/converter";
+import { useRouter } from "next/navigation";
 
 type Props = {
   handleCloseModal: () => void;
 };
 
 export function TypeModal({ handleCloseModal }: Props) {
-  const { setTypeStorage } = useTypeStorage();
+  const router = useRouter();
 
   function onTypeButton(type: string) {
-    setTypeStorage(type);
+    router.push(`/type?type=${type}`);
     handleCloseModal();
   }
 
