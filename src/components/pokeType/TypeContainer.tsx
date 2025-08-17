@@ -41,6 +41,7 @@ export default function TypeContainer({ isFrom, title, list }: Props) {
             >
               <img
                 src={getTypeIcon(getTypeEn(t))}
+                alt={t}
                 className="icon cursor-pointer h-[40px] object-contain rounded-md"
                 onClick={() => onTypeClick(t)}
               />
