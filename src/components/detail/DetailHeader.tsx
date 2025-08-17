@@ -32,7 +32,7 @@ export default function DetailHeader({
 
   return (
     <div className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-center">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2">
         <Link href="/">
           <Button
             variant="secondary"
@@ -74,7 +74,7 @@ export default function DetailHeader({
           </TooltipTrigger>
           <TooltipContent>다음</TooltipContent>
         </Tooltip>
-        <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-primary/0 px-3 py-1 text-sm font-medium text-primary">
+        <div className="ml-4 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/0 px-3 py-1 text-sm font-medium text-primary">
           {`#${pokemon.id.toString().padStart(4, "0")}`}
         </div>
         <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
