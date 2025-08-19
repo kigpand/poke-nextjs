@@ -19,13 +19,21 @@ export default function Search() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex items-center flex-col gap-4">
-      <Image src="/img/logo.png" alt="logo" width={150} height={50} />
+    <form
+      role="search"
+      aria-label="포켓몬 검색창"
+      onSubmit={onSubmit}
+      className="flex items-center flex-col gap-4"
+    >
+      <Image src="/img/logo.png" alt="포켓몬 로고" width={150} height={50} />
       <input
         type="text"
         className="border-none bg-gray-300 w-[200px] h-8 text-xs font-semibold rounded-2xl py-1 px-2 md:w-[300px]"
         ref={searchRef}
+        aria-label="도감번호나 이름을 입력해주세요."
         placeholder="도감번호나 이름을 입력해주세요"
+        autoCapitalize="none"
+        spellCheck={false}
       />
     </form>
   );
