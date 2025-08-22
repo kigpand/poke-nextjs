@@ -1,9 +1,4 @@
 import { IPokemon } from "@/interface/IPokemon";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { ChevronLeft, ChevronRight, Home, Sparkles } from "lucide-react";
 import BookmarkButton from "./BookmarkButton";
 import Link from "next/link";
@@ -31,8 +26,8 @@ export default function DetailHeader({
   }`;
 
   return (
-    <div className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-center">
-      <div className="flex items-center gap-2">
+    <header className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-center">
+      <span className="flex items-center gap-2">
         <Link href="/">
           <Button
             variant="secondary"
@@ -43,37 +38,26 @@ export default function DetailHeader({
             <Home className="h-4 w-4" />
           </Button>
         </Link>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href={prevHref}>
-              <Button
-                variant="secondary"
-                size="icon"
-                aria-label="이전"
-                className="cursor-pointer"
-              >
-                <ChevronLeft className="h-4 w-4" />
-              </Button>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent>이전</TooltipContent>
-        </Tooltip>
-
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Link href={nextHref}>
-              <Button
-                variant="secondary"
-                size="icon"
-                aria-label="다음"
-                className="cursor-pointer"
-              >
-                <ChevronRight className="h-4 w-4" />
-              </Button>
-            </Link>
-          </TooltipTrigger>
-          <TooltipContent>다음</TooltipContent>
-        </Tooltip>
+        <Link href={prevHref}>
+          <Button
+            variant="secondary"
+            size="icon"
+            aria-label="이전"
+            className="cursor-pointer"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Button>
+        </Link>
+        <Link href={nextHref}>
+          <Button
+            variant="secondary"
+            size="icon"
+            aria-label="다음"
+            className="cursor-pointer"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Button>
+        </Link>
         <div className="ml-4 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/0 px-3 py-1 text-sm font-medium text-primary">
           {`#${pokemon.id.toString().padStart(4, "0")}`}
         </div>
@@ -83,9 +67,9 @@ export default function DetailHeader({
             {pokemon.genus}
           </span>
         </h1>
-      </div>
+      </span>
 
-      <div className="flex items-center gap-2">
+      <span className="flex items-center gap-2">
         {hasMega && (
           <Link
             href={toggleMegaHref}
@@ -102,7 +86,7 @@ export default function DetailHeader({
         )}
 
         <BookmarkButton pokemon={pokemon} />
-      </div>
-    </div>
+      </span>
+    </header>
   );
 }
