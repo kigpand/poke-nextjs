@@ -20,7 +20,7 @@ export default function PokemonLists() {
   }, [scroll]);
 
   return (
-    <ul className="pokemon-grid gap-2 w-[90%]">
+    <ul role="list" className="pokemon-grid gap-2 w-[90%]">
       {currentList.map((poke) => {
         return <PokemonBox key={poke.id} pokemon={poke} />;
       })}

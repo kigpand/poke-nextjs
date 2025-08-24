@@ -18,7 +18,7 @@ function RemovableCard({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative">
+    <div role="list" className="relative">
       {children}
       <button
         aria-label="삭제"
@@ -45,7 +45,7 @@ export function BookmarkLists() {
       </Link>
     </div>
   ) : (
-    <div className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))]">
+    <ul className="grid gap-4 [grid-template-columns:repeat(auto-fill,minmax(200px,1fr))]">
       {bookmarkList.map((pokemon) => (
         <RemovableCard
           key={pokemon.id}
@@ -55,6 +55,6 @@ export function BookmarkLists() {
           <PokemonBox pokemon={pokemon} />
         </RemovableCard>
       ))}
-    </div>
+    </ul>
   );
 }

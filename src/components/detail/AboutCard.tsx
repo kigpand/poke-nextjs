@@ -12,15 +12,18 @@ type Props = {
 };
 
 export default function AboutCard({ pokemon }: Props) {
+  const titleId = `about-title-${pokemon.id}`;
   return (
     <Card
+      role="region"
+      aria-labelledby={titleId}
       style={{
         borderColor: getLineColor(pokemon.types ? pokemon.types[0] : ""),
       }}
     >
       <CardHeader>
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Info className="h-5 w-5" /> About
+        <CardTitle id={titleId} className="flex items-center gap-2 text-lg">
+          <Info aria-hidden="true" className="h-5 w-5" /> About
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
@@ -30,7 +33,10 @@ export default function AboutCard({ pokemon }: Props) {
         <Separator />
         <div className="grid grid-cols-2 gap-4">
           <div className="flex items-center gap-2 rounded-xl border p-3">
-            <Ruler className="h-4 w-4 text-muted-foreground" />
+            <Ruler
+              aria-hidden="true"
+              className="h-4 w-4 text-muted-foreground"
+            />
             <div>
               <div className="text-xs text-muted-foreground">Height</div>
               <div className="font-semibold">

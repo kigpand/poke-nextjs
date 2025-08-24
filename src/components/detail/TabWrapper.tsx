@@ -64,7 +64,6 @@ function filterType(typeObj: any) {
 function TypeBadge({ type }: { type: string }) {
   const textColor = getTextColor(type);
   const fillColor = getColor(type);
-  console.log(type);
 
   return (
     <Badge

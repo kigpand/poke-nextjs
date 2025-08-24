@@ -42,12 +42,14 @@ export function SortModal({ handleCloseModal }: Props) {
             handleCloseButton={handleCloseModal}
           />
           <button
+            aria-label="모달 닫기 버튼"
             className="w-full rounded-sm h-[30px] text-xs font-bold cursor-pointer"
             onClick={handleCloseModal}
           >
             닫기
           </button>
           <button
+            aria-label="정렬 초기화 버튼"
             className="w-full rounded-sm h-[30px] text-xs font-bold cursor-pointer"
             onClick={onResetBtn}
           >

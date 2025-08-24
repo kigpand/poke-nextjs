@@ -2,7 +2,6 @@ import AboutCard from "@/components/detail/AboutCard";
 import ImageCard from "@/components/detail/ImageCard";
 import StatCard from "@/components/detail/StatCard";
 import TabWrapper from "@/components/detail/TabWrapper";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import pokemonList from "@/json/pokemonList.json";
 import megaList from "@/json/mega.json";
 import { convertOnePoke } from "@/utils/converter";
@@ -44,27 +43,25 @@ export default async function Detail({ searchParams }: Props) {
   const hasMega = megaList.some((m) => m.id === idNum);
 
   return (
-    <TooltipProvider>
-      <div className="mx-auto max-w-6xl px-4 py-6 md:py-8">
-        <DetailHeader
-          pokemon={pokemon}
-          prevId={prevId}
-          nextId={nextId}
-          hasMega={hasMega}
-          isMega={!!isMega}
-        />
+    <main className="mx-auto max-w-6xl px-4 py-6 md:py-8">
+      <DetailHeader
+        pokemon={pokemon}
+        prevId={prevId}
+        nextId={nextId}
+        hasMega={hasMega}
+        isMega={!!isMega}
+      />
 
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-12">
-          <div className="md:col-span-5 lg:col-span-4">
-            <ImageCard pokemon={pokemon} />
-            <AboutCard pokemon={pokemon} />
-          </div>
-          <div className="md:col-span-7 lg:col-span-8">
-            <StatCard pokemon={pokemon} />
-            <TabWrapper pokemon={pokemon} />
-          </div>
-        </div>
-      </div>
-    </TooltipProvider>
+      <article className="grid grid-cols-1 gap-6 md:grid-cols-12">
+        <span className="md:col-span-5 lg:col-span-4">
+          <ImageCard pokemon={pokemon} />
+          <AboutCard pokemon={pokemon} />
+        </span>
+        <span className="md:col-span-7 lg:col-span-8">
+          <StatCard pokemon={pokemon} />
+          <TabWrapper pokemon={pokemon} />
+        </span>
+      </article>
+    </main>
   );
 }

@@ -44,41 +44,41 @@ export function SortButtons({ title, list, type, handleCloseButton }: Props) {
   };
 
   const list_style =
-    "p-1 text-center text-xs bg-white border cursor-pointer hover:font-bold ";
+    "p-1 text-center text-xs bg-white border cursor-pointer w-full hover:font-bold ";
 
   return (
     <div className="w-full">
       <label className="w-full font-bold text-foreground">{title}</label>
       <ul className="w-full grid [grid-template-columns:repeat(2,49%)] gap-1 justify-evenly pb-2">
         {type === "type" &&
-          list &&
           list.map((type: string, i: number) => {
             return (
-              <li
-                role="button"
-                className={list_style}
-                style={{
-                  borderColor: getColor(type),
-                  color: getColor(type),
-                }}
-                key={i}
-                onClick={() => onSort(type, "type")}
-              >
-                {getTypeKo(type)}
+              <li key={i}>
+                <button
+                  className={list_style}
+                  style={{
+                    borderColor: getColor(type),
+                    color: getColor(type),
+                  }}
+                  onClick={() => onSort(type, "type")}
+                  aria-label={`${getTypeKo(type)} 타입으로 필터`}
+                >
+                  {getTypeKo(type)}
+                </button>
               </li>
             );
           })}
         {type === "gene" &&
-          list &&
           list.map((gene: string, i: number) => {
             return (
-              <li
-                role="button"
-                className={cn(list_style, "text-black border-gray-300")}
-                key={i}
-                onClick={() => onSort(gene, "gene")}
-              >
-                {gene}
+              <li key={i}>
+                <button
+                  className={cn(list_style, "text-black border-gray-300")}
+                  onClick={() => onSort(gene, "gene")}
+                  aria-label={`${gene} 세대로 필터`}
+                >
+                  {gene}
+                </button>
               </li>
             );
           })}
