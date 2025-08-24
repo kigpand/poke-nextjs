@@ -19,7 +19,7 @@ export default function Header() {
         >
           <BsFillBookmarkPlusFill className="w-[30px] h-[30px]" />
         </Link>
-        <ThemeToggleButton />
+        {/* <ThemeToggleButton /> */}
       </div>
     </header>
   );
