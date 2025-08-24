@@ -2,6 +2,7 @@
 
 import { useModal } from "@/hooks/useModal";
 import { TypeModal } from "../../modal";
+import { Shapes } from "lucide-react";
 
 export function TypeButton() {
   const { isOpen, open, close } = useModal();
@@ -9,10 +10,10 @@ export function TypeButton() {
   return (
     <>
       <button
-        className="bg-transparent text-gray-500 font-bold cursor-pointer border-none hover:scale-110"
+        className="w-[40px] h-[40px] bg-background flex items-center justify-center cursor-pointer border border-gray-400 p-1 rounded-xl hover:bg-gray-100"
         onClick={open}
       >
-        타입보기
+        <Shapes />
       </button>
       {isOpen && <TypeModal handleCloseModal={close} />}
     </>

@@ -5,11 +5,10 @@ import { BsFillBookmarkPlusFill } from "react-icons/bs";
 
 export default function Header() {
   return (
-    <header className="w-[90%] h-1/5 flex justify-between relative mb-2 py-7">
-      <TypeButton />
+    <header className="w-[90%] h-1/5 flex justify-center relative mb-2 py-7">
       <Search />
       <div
-        className="flex gap-1 items-start flex-wrap justify-end"
+        className="absolute right-0 w-[100px] flex gap-1 items-start flex-wrap justify-end"
         style={{ alignContent: "flex-start" }}
       >
         <SortButton />
@@ -19,6 +18,7 @@ export default function Header() {
         >
           <BsFillBookmarkPlusFill className="w-[30px] h-[30px]" />
         </Link>
+        <TypeButton />
         {/* <ThemeToggleButton /> */}
       </div>
     </header>
