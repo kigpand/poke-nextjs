@@ -25,6 +25,8 @@ export default function BookmarkButton({ pokemon }: Props) {
       variant={isBookmark ? "default" : "secondary"}
       onClick={handleBookmarkButton}
       className="ml-2 cursor-pointer"
+      aria-pressed={isBookmark}
+      title={isBookmark ? "북마크 해제" : "북마크 추가"}
     >
       <Heart className={`mr-2 h-4 w-4 ${isBookmark ? "fill-current" : ""}`} />
       {isBookmark ? "Favorited" : "Favorite"}

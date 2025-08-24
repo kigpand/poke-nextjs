@@ -27,7 +27,7 @@ export default function DetailHeader({
 
   return (
     <header className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-center">
-      <span className="flex items-center gap-2">
+      <nav className="flex items-center gap-2">
         <Link href="/">
           <Button
             variant="secondary"
@@ -67,13 +67,15 @@ export default function DetailHeader({
             {pokemon.genus}
           </span>
         </h1>
-      </span>
+      </nav>
 
       <span className="flex items-center gap-2">
         {hasMega && (
           <Link
             href={toggleMegaHref}
+            aria-pressed={!!isMega}
             aria-label="메가진화 전환"
+            title="메가진화 전환"
             className={`min-w-28 cursor-pointer flex items-center shadow-xs h-9 rounded-md px-4 py-2 ${
               isMega
                 ? "bg-secondary text-secondary-foreground"

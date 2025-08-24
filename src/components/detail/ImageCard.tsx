@@ -18,7 +18,7 @@ export default function ImageCard({ pokemon }: Props) {
         <img
           className="relative aspect-square w-full overflow-hidden rounded-2xl bg-gradient-to-br from-muted/40 to-muted p-2"
           src={pokemon.imageUrl}
-          alt={pokemon.name}
+          alt={`${pokemon.name} 공식 아트워크`}
           referrerPolicy="no-referrer"
         />
       </CardContent>
