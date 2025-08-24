@@ -27,40 +27,44 @@ export default function DetailHeader({
 
   return (
     <header className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-center">
-      <nav className="flex items-center gap-2">
-        <Link
-          href="/"
-          className={buttonVariants({ variant: "secondary", size: "icon" })}
-          aria-label="홈으로"
-        >
-          <Home className="h-4 w-4" />
-        </Link>
-        <Link
-          href={prevHref}
-          className={buttonVariants({ variant: "secondary", size: "icon" })}
-          aria-label="이전"
-        >
-          <ChevronLeft className="h-4 w-4" />
-        </Link>
-        <Link
-          href={nextHref}
-          className={buttonVariants({ variant: "secondary", size: "icon" })}
-          aria-label="다음"
-        >
-          <ChevronRight className="h-4 w-4" />
-        </Link>
-        <div className="ml-4 rounded-2xl bg-gradient-to-br from-primary/10 to-primary/0 px-3 py-1 text-sm font-medium text-primary">
-          {`#${pokemon.id.toString().padStart(4, "0")}`}
+      <nav className="flex items-center w-full flex-col gap-4 md:gap-0 md:flex-row">
+        <div className="flex gap-1 w-full justify-end md:w-auto">
+          <Link
+            href="/"
+            className={buttonVariants({ variant: "secondary", size: "icon" })}
+            aria-label="홈으로"
+          >
+            <Home className="h-4 w-4" />
+          </Link>
+          <Link
+            href={prevHref}
+            className={buttonVariants({ variant: "secondary", size: "icon" })}
+            aria-label="이전"
+          >
+            <ChevronLeft className="h-4 w-4" />
+          </Link>
+          <Link
+            href={nextHref}
+            className={buttonVariants({ variant: "secondary", size: "icon" })}
+            aria-label="다음"
+          >
+            <ChevronRight className="h-4 w-4" />
+          </Link>
         </div>
-        <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
-          <span className="capitalize">{pokemon.name}</span>
-          <span className="ml-3 align-middle text-base font-normal text-muted-foreground">
-            {pokemon.genus}
-          </span>
-        </h1>
+        <div className="flex gap-2 items-center w-full justify-between md:w-auto md:ml-4 md:justify-start">
+          <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-primary/0 px-3 py-1 text-sm font-medium text-primary">
+            {`#${pokemon.id.toString().padStart(4, "0")}`}
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <span className="capitalize">{pokemon.name}</span>
+            <span className="ml-3 align-middle text-base font-normal text-muted-foreground">
+              {pokemon.genus}
+            </span>
+          </h1>
+        </div>
       </nav>
 
-      <span className="flex items-center gap-2">
+      <div className="flex items-center w-full justify-end gap-2 md:w-auto">
         {hasMega && (
           <Link
             href={toggleMegaHref}
@@ -79,7 +83,7 @@ export default function DetailHeader({
         )}
 
         <BookmarkButton pokemon={pokemon} />
-      </span>
+      </div>
     </header>
   );
 }
