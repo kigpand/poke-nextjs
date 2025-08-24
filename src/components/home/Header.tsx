@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { SortButton, ThemeToggleButton, TypeButton } from "./button";
+import { SortButton, TypeButton } from "./button";
 import Search from "./Search";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
 
