@@ -2,7 +2,7 @@ import { IPokemon } from "@/interface/IPokemon";
 import { ChevronLeft, ChevronRight, Home, Sparkles } from "lucide-react";
 import BookmarkButton from "./BookmarkButton";
 import Link from "next/link";
-import { Button, buttonVariants } from "../ui/button";
+import { buttonVariants } from "../ui/button";
 
 type Props = {
   pokemon: IPokemon;
@@ -38,14 +38,26 @@ export default function DetailHeader({
           </Link>
           <Link
             href={prevHref}
-            className={buttonVariants({ variant: "secondary", size: "icon" })}
+            aria-disabled={!prevId}
+            tabIndex={prevId ? 0 : -1}
+            className={buttonVariants({
+              variant: "secondary",
+              size: "icon",
+              className: !prevId && "pointer-events-none opacity-30",
+            })}
             aria-label="이전"
           >
             <ChevronLeft className="h-4 w-4" />
           </Link>
           <Link
             href={nextHref}
-            className={buttonVariants({ variant: "secondary", size: "icon" })}
+            aria-disabled={!nextId}
+            tabIndex={nextId ? 0 : -1}
+            className={buttonVariants({
+              variant: "secondary",
+              size: "icon",
+              className: !nextId && "pointer-events-none opacity-30",
+            })}
             aria-label="다음"
           >
             <ChevronRight className="h-4 w-4" />
