@@ -16,29 +16,34 @@ export function Header() {
   );
 
   return (
-    <div className="mb-4 flex items-center justify-between">
+    <header className="mb-4 flex items-center justify-between">
       <div className="flex items-baseline gap-3">
-        <h1 className="text-2xl font-bold">나의 도감</h1>
+        <h1 className="text-2xl font-bold" aria-label="bookmark-heading">
+          나의 도감
+        </h1>
         <span className="text-sm text-muted-foreground">
           용량 {capacityText}
         </span>
       </div>
-      <div className="flex items-center gap-2">
-        <Link href="/">
-          <Button variant="secondary" size="sm" aria-label="홈">
-            <Home className="mr-2 h-4 w-4" />홈
-          </Button>
-        </Link>
+      <nav aria-label="상단 작업" className="flex items-center gap-2">
+        <Button asChild variant="secondary" size="sm">
+          <Link href="/" aria-label="홈으로 이동">
+            <Home className="mr-2 h-4 w-4" aria-hidden="true" />홈
+          </Link>
+        </Button>
         <Button
+          type="button"
           variant="outline"
           size="sm"
           onClick={clearBookmark}
           disabled={bookmarkList.length === 0}
+          aria-disabled={bookmarkList.length === 0}
+          aria-label="북마크 전체 비우기"
         >
-          <Trash2 className="mr-2 h-4 w-4" />
+          <Trash2 className="mr-2 h-4 w-4" aria-hidden="true" />
           전체 비우기
         </Button>
-      </div>
-    </div>
+      </nav>
+    </header>
   );
 }

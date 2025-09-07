@@ -1,10 +1,11 @@
 import TypeContainer from "@/components/pokeType/TypeContainer";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import typeList from "@/json/types.json";
 import { getTypeIcon, typeConvertDamegeData } from "@/utils/converter";
 import { Home } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type SearchParams = {
   type: string;
@@ -18,7 +19,9 @@ export default async function Type({ searchParams }: Props) {
   const normalized = (type || "").toLowerCase();
   const findType = typeList.find((list) => list.name === normalized);
 
-  if (!findType) return <div>잘못된 타입이당</div>;
+  if (!findType) {
+    notFound();
+  }
 
   const convertType = typeConvertDamegeData(findType);
   const iconSrc = getTypeIcon(convertType.name);
@@ -54,8 +57,8 @@ export default async function Type({ searchParams }: Props) {
           <Home aria-hidden="true" className="h-4 w-4" />
         </Link>
       </header>
-      <article className="flex gap-4">
-        <section aria-labelledby="defense-title" className="w-full">
+      <section className="flex gap-4">
+        <article aria-labelledby="defense-title" className="w-full">
           <h3 id="defense-title" className="font-bold text-lg mb-2">
             방어 상성
           </h3>
@@ -76,8 +79,8 @@ export default async function Type({ searchParams }: Props) {
               list={convertType.doubleFrom}
             />
           </ul>
-        </section>
-        <section aria-labelledby="offense-title" className="w-full">
+        </article>
+        <article aria-labelledby="offense-title" className="w-full">
           <h3 id="offense-title" className="font-bold text-lg mb-2">
             공격 상성
           </h3>
@@ -98,8 +101,8 @@ export default async function Type({ searchParams }: Props) {
               list={convertType.doubleTo}
             />
           </ul>
-        </section>
-      </article>
+        </article>
+      </section>
     </main>
   );
 }
