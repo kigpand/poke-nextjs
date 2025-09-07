@@ -1,10 +1,11 @@
 import TypeContainer from "@/components/pokeType/TypeContainer";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import typeList from "@/json/types.json";
 import { getTypeIcon, typeConvertDamegeData } from "@/utils/converter";
 import { Home } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 
 type SearchParams = {
   type: string;
@@ -18,7 +19,9 @@ export default async function Type({ searchParams }: Props) {
   const normalized = (type || "").toLowerCase();
   const findType = typeList.find((list) => list.name === normalized);
 
-  if (!findType) return <div>잘못된 타입이당</div>;
+  if (!findType) {
+    notFound();
+  }
 
   const convertType = typeConvertDamegeData(findType);
   const iconSrc = getTypeIcon(convertType.name);
