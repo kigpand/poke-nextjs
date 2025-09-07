@@ -18,7 +18,9 @@ export function Header() {
   return (
     <header className="mb-4 flex items-center justify-between">
       <div className="flex items-baseline gap-3">
-        <h1 className="text-2xl font-bold">나의 도감</h1>
+        <h1 className="text-2xl font-bold" aria-label="bookmark-heading">
+          나의 도감
+        </h1>
         <span className="text-sm text-muted-foreground">
           용량 {capacityText}
         </span>

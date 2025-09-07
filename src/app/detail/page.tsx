@@ -51,17 +51,16 @@ export default async function Detail({ searchParams }: Props) {
         hasMega={hasMega}
         isMega={!!isMega}
       />
-
-      <article className="grid grid-cols-1 gap-6 md:grid-cols-12">
-        <span className="md:col-span-5 lg:col-span-4">
+      <section className="grid grid-cols-1 gap-6 md:grid-cols-12">
+        <div className="md:col-span-5 lg:col-span-4">
           <ImageCard pokemon={pokemon} />
           <AboutCard pokemon={pokemon} />
-        </span>
-        <span className="md:col-span-7 lg:col-span-8">
+        </div>
+        <div className="md:col-span-7 lg:col-span-8">
           <StatCard pokemon={pokemon} />
           <TabWrapper pokemon={pokemon} />
-        </span>
-      </article>
+        </div>
+      </section>
     </main>
   );
 }

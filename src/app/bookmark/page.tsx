@@ -5,11 +5,14 @@ import { Separator } from "@/components/ui/separator";
 export default function Bookmark() {
   return (
     <main className="w-full h-full">
-      <article className="mx-auto max-w-5xl px-4 py-6 md:py-8">
+      <section
+        className="mx-auto max-w-5xl px-4 py-6 md:py-8"
+        aria-labelledby="bookmark-heading"
+      >
         <Header />
         <Separator className="mb-6" />
         <BookmarkLists />
-      </article>
+      </section>
     </main>
   );
 }
