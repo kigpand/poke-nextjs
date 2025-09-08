@@ -6,6 +6,7 @@ import pokemonList from "@/json/pokemonList.json";
 import megaList from "@/json/mega.json";
 import { convertOnePoke } from "@/utils/converter";
 import DetailHeader from "@/components/detail/DetailHeader";
+import { notFound } from "next/navigation";
 
 type SearchParams = {
   id: string;
@@ -19,7 +20,9 @@ export default async function Detail({ searchParams }: Props) {
   const isMega = params.isMega && params.isMega === "true";
 
   const find = pokemonList.find((poke) => poke.id === Number(params.id));
-  if (!find) return <div>오류가 발생했습니다.</div>;
+  if (!find) {
+    return notFound();
+  }
 
   let pokemon = convertOnePoke(find);
   if (isMega) {
