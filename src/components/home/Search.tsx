@@ -20,6 +20,7 @@ export default function Search() {
 
   return (
     <form
+      // test code: role이 명시되면 test 코드에서 form으로 role을 가져올 수 없고 명시한 role을 통해 가져올 수 있다.
       role="search"
       aria-label="포켓몬 검색창"
       onSubmit={onSubmit}
