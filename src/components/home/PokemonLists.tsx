@@ -1,23 +1,27 @@
 "use client";
 import { useCurrentPokemonList, usePokemonList, useScroll } from "@/hooks";
 import { PokemonBox } from "../common";
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react";
+
+const PAGE_COUNT = 9;
 
 export default function PokemonLists() {
   const { scroll } = useScroll();
   const { pokemonList } = usePokemonList();
   const { currentList, handleAddCurrentList } = useCurrentPokemonList();
 
-  function returnToTop() {
-    window.scrollTo(0, 0);
-  }
+  // 더 이상 로드할 수없는 상황
+  const canLoadMore = useMemo(
+    () => currentList.length < pokemonList.length,
+    [currentList.length, pokemonList.length]
+  );
 
   useEffect(() => {
-    if (scroll !== 0) {
+    if (scroll !== 0 && canLoadMore) {
       const count = currentList.length;
-      handleAddCurrentList(pokemonList.slice(count, count + 9));
+      handleAddCurrentList(pokemonList.slice(count, count + PAGE_COUNT));
     }
-  }, [scroll]);
+  }, [scroll, canLoadMore]);
 
   return (
     <ul role="list" className="pokemon-grid gap-2 w-[90%]">
