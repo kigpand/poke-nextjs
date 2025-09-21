@@ -63,15 +63,9 @@ jobs:
           BADGE_F="![Functions](https://img.shields.io/badge/functions-${F}%25-${CF})"
           BADGE_L="![Lines](https://img.shields.io/badge/lines-${L}%25-${CL})"
 
-          CONTENT="<!-- COVERAGE_START -->
-          ${BADGE_S} ${BADGE_B} ${BADGE_F} ${BADGE_L}
-          <!-- COVERAGE_END -->"
+          BADGES="${BADGE_S} ${BADGE_B} ${BADGE_F} ${BADGE_L}"
 
-          awk -v RS="" -v ORS="\n\n" -v repl="$CONTENT" '
-            {
-              gsub(/<!-- COVERAGE_START -->.*<!-- COVERAGE_END -->/, repl)
-              print
-            }' README.md > README.tmp && mv README.tmp README.md
+          perl -0777 -pe 's/<!-- COVERAGE_START -->.*?<!-- COVERAGE_END -->/<!-- COVERAGE_START -->\n'"$BADGES"'\n<!-- COVERAGE_END -->/s' -i README.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
