@@ -65,7 +65,9 @@ jobs:
 
           BADGES="${BADGE_S} ${BADGE_B} ${BADGE_F} ${BADGE_L}"
 
-          perl -0777 -pe 's/<!-- COVERAGE_START -->.*?<!-- COVERAGE_END -->/<!-- COVERAGE_START -->\n'"$BADGES"'\n<!-- COVERAGE_END -->/s' -i README.md
+          perl -0777 -i -pe "BEGIN{ \$repl = q{$BADGES}; } s/<!-- COVERAGE_START -->.*?<!-- COVERAGE_END -->/<!-- COVERAGE_START -->\n\$repl\n<!-- COVERAGE_END -->/s" README.md
+
+          awk '/<!-- COVERAGE_START -->/,/<!-- COVERAGE_END -->/' README.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
