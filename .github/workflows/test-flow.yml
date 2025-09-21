@@ -17,7 +17,7 @@ jobs:
         with: { node-version: "20", cache: "pnpm" }
 
       - name: Install deps
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Run tests with coverage
         run: pnpm jest --coverage --coverageReporters=json-summary --coverageReporters=text-summary
