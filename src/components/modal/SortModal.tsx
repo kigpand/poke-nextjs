@@ -27,7 +27,12 @@ export function SortModal({ handleCloseModal }: Props) {
     <ModalPortal
       handleCloseModal={handleCloseModal}
       component={
-        <article className="bg-background text-foreground w-[300px] pt-2 pb-5 px-2 border border-foreground rounded-lg">
+        <div
+          role="dialog"
+          aria-label="정렬 모달"
+          id="sort-modal"
+          className="bg-background text-foreground w-[300px] pt-2 pb-5 px-2 border border-foreground rounded-lg"
+        >
           <SortSelect handleCloseButton={handleCloseModal} />
           <SortButtons
             title="타입"
@@ -55,7 +60,7 @@ export function SortModal({ handleCloseModal }: Props) {
           >
             초기화
           </button>
-        </article>
+        </div>
       }
     />
   );

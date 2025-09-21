@@ -11,7 +11,7 @@ import { IPokemon } from "@/interface/IPokemon";
 import { Badge } from "../ui/badge";
 import { useMemo } from "react";
 import types from "@/json/types.json";
-import TabTypeText from "./TabTypeText";
+import TypeEffectiveness from "./TypeEffectiveness";
 
 type Props = {
   pokemon: IPokemon;
@@ -146,21 +146,25 @@ export default function TabWrapper({ pokemon }: Props) {
               방어 상성
             </label>
             {type.doubleFrom.length > 0 && (
-              <TabTypeText
+              <TypeEffectiveness
                 title="효과가 좋음"
                 types={type.doubleFrom}
                 value={2}
               />
             )}
             {type.halfFrom.length > 0 && (
-              <TabTypeText
+              <TypeEffectiveness
                 title="효과가 별로"
                 types={type.halfFrom}
                 value={0.5}
               />
             )}
             {type.noFrom.length > 0 && (
-              <TabTypeText title="효과가 없음" types={type.noFrom} value={0} />
+              <TypeEffectiveness
+                title="효과가 없음"
+                types={type.noFrom}
+                value={0}
+              />
             )}
           </CardContent>
         </Card>
