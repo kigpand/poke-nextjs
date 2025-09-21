@@ -31,9 +31,7 @@ pokemon api를 활용한 포켓몬스터 도감용 사이트입니다
 ## 🧪 테스트 커버리지
 
 <!-- COVERAGE_START -->
-
-Current coverage: **0% Statements, 0% Branches, 0% Functions, 0% Lines**
-
+![Statements](https://img.shields.io/badge/statements-72.4%25-yellow) ![Branches](https://img.shields.io/badge/branches-90.5%25-brightgreen) ![Functions](https://img.shields.io/badge/functions-49.2%25-orange) ![Lines](https://img.shields.io/badge/lines-72.4%25-yellow)
 <!-- COVERAGE_END -->
 
 ---
