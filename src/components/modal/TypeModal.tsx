@@ -21,9 +21,10 @@ export function TypeModal({ handleCloseModal }: Props) {
     <ModalPortal
       handleCloseModal={handleCloseModal}
       component={
-        <article
+        <div
           role="dialog"
           aria-modal="true"
+          id="type-modal"
           aria-labelledby="modal-title"
           className="bg-background text-foreground w-[300px] pt-2 pb-5 border border-foreground rounded-lg"
         >
@@ -57,7 +58,7 @@ export function TypeModal({ handleCloseModal }: Props) {
               );
             })}
           </ul>
-        </article>
+        </div>
       }
     />
   );

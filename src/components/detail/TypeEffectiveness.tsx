@@ -12,7 +12,7 @@ type Props = {
   value: number;
 };
 
-export default function TabTypeText({ title, types, value }: Props) {
+export default function TypeEffectiveness({ title, types, value }: Props) {
   const typeList = useMemo(() => {
     const map = new Map<string, ITypeText>();
 
@@ -36,6 +36,7 @@ export default function TabTypeText({ title, types, value }: Props) {
             <li
               className="flex justify-between p-1 w-20 rounded text-white"
               style={{ backgroundColor: getColor(item.text) }}
+              aria-label={`${item.text}x${value / item.count}배`}
               key={i}
             >
               <strong>{item.text}</strong>
