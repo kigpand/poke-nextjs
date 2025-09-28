@@ -21,7 +21,7 @@ const gridComponents = {
 
 const PAGE_COUNT = 9;
 
-export default function MiniGridTest() {
+export default function PokemonLists() {
   const { pokemonList } = usePokemonList();
   const { currentList, handleAddCurrentList } = useCurrentPokemonList();
 
