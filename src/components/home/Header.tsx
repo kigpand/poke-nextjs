@@ -8,7 +8,7 @@ export default function Header() {
     <header
       role="banner"
       aria-label="도감 배너 겸 헤더"
-      className="w-[90%] h-1/5 flex justify-center relative mb-2 py-7"
+      className="w-[90%] h-[20vh] flex justify-center relative mb-2 py-7"
     >
       <Search />
       <div
