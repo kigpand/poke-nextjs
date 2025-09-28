@@ -1,33 +1,47 @@
 "use client";
-import { useCurrentPokemonList, usePokemonList, useScroll } from "@/hooks";
+
+import { useCurrentPokemonList, usePokemonList } from "@/hooks";
+import { forwardRef, useMemo } from "react";
+import { VirtuosoGrid } from "react-virtuoso";
 import { PokemonBox } from "../common";
-import { useEffect, useMemo } from "react";
+
+const gridComponents = {
+  List: forwardRef<HTMLUListElement, React.HTMLAttributes<HTMLUListElement>>(
+    ({ children, ...props }, ref) => (
+      <ul ref={ref} {...props} className="w-[100%] pokemon-grid gap-2">
+        {children}
+      </ul>
+    )
+  ),
+};
 
 const PAGE_COUNT = 9;
 
-export default function PokemonLists() {
-  const { scroll } = useScroll();
+export default function MiniGridTest() {
   const { pokemonList } = usePokemonList();
   const { currentList, handleAddCurrentList } = useCurrentPokemonList();
 
-  // 더 이상 로드할 수없는 상황
   const canLoadMore = useMemo(
     () => currentList.length < pokemonList.length,
     [currentList.length, pokemonList.length]
   );
 
-  useEffect(() => {
-    if (scroll !== 0 && canLoadMore) {
-      const count = currentList.length;
-      handleAddCurrentList(pokemonList.slice(count, count + PAGE_COUNT));
-    }
-  }, [scroll, canLoadMore]);
+  const loadMore = () => {
+    if (!canLoadMore) return;
+    const count = currentList.length;
+    const next = pokemonList.slice(count, count + PAGE_COUNT);
+    if (next.length > 0) handleAddCurrentList(next);
+  };
 
   return (
-    <ul role="list" className="pokemon-grid gap-2 w-[90%]">
-      {currentList.map((poke) => {
-        return <PokemonBox key={poke.id} pokemon={poke} />;
-      })}
-    </ul>
+    <div className="w-[100%] h-[80vh]">
+      <VirtuosoGrid
+        data={currentList}
+        overscan={200}
+        endReached={loadMore}
+        components={gridComponents as any}
+        itemContent={(_, item) => <PokemonBox pokemon={item} />}
+      />
+    </div>
   );
 }
