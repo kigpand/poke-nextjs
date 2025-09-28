@@ -2,13 +2,17 @@
 
 import { useCurrentPokemonList, usePokemonList } from "@/hooks";
 import { forwardRef, useMemo } from "react";
-import { VirtuosoGrid } from "react-virtuoso";
+import { VirtuosoGrid, GridComponents } from "react-virtuoso";
 import { PokemonBox } from "../common";
 
 const gridComponents = {
   List: forwardRef<HTMLUListElement, React.HTMLAttributes<HTMLUListElement>>(
-    ({ children, ...props }, ref) => (
-      <ul ref={ref} {...props} className="w-[100%] pokemon-grid gap-2">
+    ({ children, className, ...props }, ref) => (
+      <ul
+        ref={ref}
+        {...props}
+        className={`${className ?? ""} w-[100%] pokemon-grid gap-2`}
+      >
         {children}
       </ul>
     )
@@ -39,7 +43,7 @@ export default function MiniGridTest() {
         data={currentList}
         overscan={200}
         endReached={loadMore}
-        components={gridComponents as any}
+        components={gridComponents as GridComponents}
         itemContent={(_, item) => <PokemonBox pokemon={item} />}
       />
     </div>

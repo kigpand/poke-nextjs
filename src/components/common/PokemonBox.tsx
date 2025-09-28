@@ -1,12 +1,13 @@
 import type { IPokemon } from "@/interface/IPokemon";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { memo } from "react";
 
 type Props = {
   pokemon: IPokemon;
 };
 
-export function PokemonBox({ pokemon }: Props) {
+export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
   return (
     <li className="w-full h-[200px] p-1 cursor-pointer border hover:bg-gray-200 border-[#e8e8e8]">
       <Link
@@ -35,4 +36,4 @@ export function PokemonBox({ pokemon }: Props) {
       </Link>
     </li>
   );
-}
+});
