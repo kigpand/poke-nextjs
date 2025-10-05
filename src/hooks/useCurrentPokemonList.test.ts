@@ -1,12 +1,6 @@
-import { usePokemonStore } from "@/store/pokemonStore";
 import { act, renderHook } from "@testing-library/react";
 import { useCurrentPokemonList } from "./useCurrentPokemonList";
 import { TEST_POKE } from "@/test/fixtures/pokemon";
-
-beforeEach(() => {
-  const { resetCurrentList } = usePokemonStore.getState();
-  resetCurrentList();
-});
 
 describe("useCurrentPokemonList hook", () => {
   it("입력한 포켓몬 리스트를 현재 리스트와 교체한다", () => {

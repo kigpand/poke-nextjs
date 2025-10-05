@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { cn } from "@/lib/utils";
 import { IPokemon } from "@/interface/IPokemon";
 import { useCurrentPokemonList, usePokemonList } from "@/hooks";
-import { ListContext } from "@/context/ListProvider";
+import { ListContext } from "@/provider/ListProvider";
 
 type Props = {
   handleCloseButton: () => void;

@@ -2,7 +2,7 @@ import Link from "next/link";
 import { SortButton, TypeButton } from "./button";
 import Search from "./Search";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
-import ListProvider from "@/context/ListProvider";
+import ListProvider from "@/provider/ListProvider";
 import pokemonList from "@/json/pokemonList.json";
 import { convertPokeData } from "@/utils/converter";
 

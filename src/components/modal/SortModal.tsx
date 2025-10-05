@@ -5,7 +5,7 @@ import { SortSelect } from "./sort/SortSelect";
 import { SortModalButtons } from "./sort/SortModalButtons";
 import { typeList, geneList } from "@/utils/sort";
 import { useContext } from "react";
-import { ListContext } from "@/context/ListProvider";
+import { ListContext } from "@/provider/ListProvider";
 
 type Props = {
   handleCloseModal: () => void;
