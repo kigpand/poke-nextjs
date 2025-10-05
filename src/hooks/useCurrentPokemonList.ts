@@ -14,12 +14,9 @@ export function useCurrentPokemonList() {
     addCurrentList(list);
   }
 
-  async function handleResetCurrentList() {
-    const response = await fetch("/api/reset");
-    const data = await response.json();
-
-    setCurrentList(data.slice(0, 20));
-    handlePokemonList(data);
+  async function handleResetCurrentList(reset: IPokemon[]) {
+    setCurrentList(reset.slice(0, 20));
+    handlePokemonList(reset);
   }
 
   return {

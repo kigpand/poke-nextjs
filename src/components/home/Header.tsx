@@ -2,7 +2,9 @@ import Link from "next/link";
 import { SortButton, TypeButton } from "./button";
 import Search from "./Search";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import ListProvider from "@/context/ListProvider";
 import pokemonList from "@/json/pokemonList.json";
+import { convertPokeData } from "@/utils/converter";
 
 export default function Header() {
   return (
@@ -16,7 +18,9 @@ export default function Header() {
         className="absolute right-0 w-[100px] flex gap-1 items-start flex-wrap justify-end"
         style={{ alignContent: "flex-start" }}
       >
-        <SortButton />
+        <ListProvider pokemonList={convertPokeData(pokemonList)}>
+          <SortButton />
+        </ListProvider>
         <Link
           aria-label="도감 페이지 이동 버튼"
           href="/bookmark"

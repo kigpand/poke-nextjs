@@ -5,7 +5,6 @@ import { cn } from "@/lib/utils";
 import { convertPokeData } from "@/utils/converter";
 import { IPokemon } from "@/interface/IPokemon";
 import { useCurrentPokemonList, usePokemonList } from "@/hooks";
-import pokemonList from "@/json/pokemonList.json";
 
 type Props = {
   handleCloseButton: () => void;
@@ -32,7 +31,7 @@ export function SortSelect({ handleCloseButton }: Props) {
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer w-full hover:font-bold";
 
-  const onSortBy = () => {
+  const onSortBy = async () => {
     const list: IPokemon[] = convertPokeData(
       JSON.parse(JSON.stringify(pokemonList))
     );
