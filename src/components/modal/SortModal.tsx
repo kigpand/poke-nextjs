@@ -1,8 +1,6 @@
 "use client";
 import ModalPortal from "@/portal/ModalPortal";
-import pokemonList from "@/json/pokemonList.json";
-import { convertPokeData } from "@/utils/converter";
-import { useCurrentPokemonList, usePokemonList } from "@/hooks";
+import { useCurrentPokemonList } from "@/hooks";
 import { SortSelect } from "./sort/SortSelect";
 import { SortButtons } from "./sort/SortButtons";
 import { typeList, geneList } from "@/utils/sort";
@@ -12,14 +10,10 @@ type Props = {
 };
 
 export function SortModal({ handleCloseModal }: Props) {
-  const { handlePokemonList } = usePokemonList();
-  const { resetCurrentList } = useCurrentPokemonList();
+  const { handleResetCurrentList } = useCurrentPokemonList();
 
   function onResetBtn() {
-    const list = convertPokeData(pokemonList);
-
-    handlePokemonList(list);
-    resetCurrentList();
+    handleResetCurrentList();
     handleCloseModal();
   }
 

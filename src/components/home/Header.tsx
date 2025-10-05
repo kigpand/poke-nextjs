@@ -2,6 +2,7 @@ import Link from "next/link";
 import { SortButton, TypeButton } from "./button";
 import Search from "./Search";
 import { BsFillBookmarkPlusFill } from "react-icons/bs";
+import pokemonList from "@/json/pokemonList.json";
 
 export default function Header() {
   return (

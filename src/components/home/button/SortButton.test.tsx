@@ -34,7 +34,7 @@ jest.mock("@/components/modal/SortModal", () => ({
 }));
 
 test("정렬 버튼 렌더링 테스트", () => {
-  render(<SortButton />);
+  render(<SortButton pokemonList={[]} />);
 
   const btn = screen.getByRole("button", { name: "필터링 모달 호출 버튼" });
   expect(btn).toBeInTheDocument();
@@ -45,7 +45,7 @@ test("정렬 버튼 렌더링 테스트", () => {
 
 test("버튼 클릭 시 useModal.open이 호출된다", async () => {
   const user = userEvent.setup();
-  render(<SortButton />);
+  render(<SortButton pokemonList={[]} />);
   const btn = screen.getByRole("button", { name: "필터링 모달 호출 버튼" });
 
   await user.click(btn);
@@ -54,7 +54,7 @@ test("버튼 클릭 시 useModal.open이 호출된다", async () => {
 
 test("Open이 true일 때 모달이 오픈된다", () => {
   isOpenState = true;
-  render(<SortButton />);
+  render(<SortButton pokemonList={[]} />);
 
   expect(screen.getByRole("dialog", { name: "정렬 모달" })).toBeInTheDocument();
 });
@@ -62,7 +62,7 @@ test("Open이 true일 때 모달이 오픈된다", () => {
 test("모달을 닫을 시 useModal.close가 호출된다", async () => {
   const user = userEvent.setup();
   isOpenState = true;
-  render(<SortButton />);
+  render(<SortButton pokemonList={[]} />);
 
   const button = screen.getByText("모달 닫기");
   await user.click(button);
