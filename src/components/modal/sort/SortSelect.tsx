@@ -1,10 +1,10 @@
 "use client";
 import { SortType } from "@/types/SortType";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { cn } from "@/lib/utils";
-import { convertPokeData } from "@/utils/converter";
 import { IPokemon } from "@/interface/IPokemon";
 import { useCurrentPokemonList, usePokemonList } from "@/hooks";
+import { ListContext } from "@/context/ListProvider";
 
 type Props = {
   handleCloseButton: () => void;
@@ -24,6 +24,7 @@ const SORT_LABELS: Record<SortType, string> = {
 };
 
 export function SortSelect({ handleCloseButton }: Props) {
+  const resetList = useContext(ListContext);
   const [select, setSelect] = useState<SortType>("id");
   const { handlePokemonList } = usePokemonList();
   const { handleChangeCurrentPokeList } = useCurrentPokemonList();
@@ -31,11 +32,11 @@ export function SortSelect({ handleCloseButton }: Props) {
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer w-full hover:font-bold";
 
-  const onSortBy = async () => {
-    const list: IPokemon[] = convertPokeData(
-      JSON.parse(JSON.stringify(pokemonList))
+  const onSortBy = () => {
+    if (!resetList) return;
+    let filteredData: IPokemon[] = resetList.sort(
+      (a, b) => b[select] - a[select]
     );
-    let filteredData: IPokemon[] = list.sort((a, b) => b[select] - a[select]);
 
     if (filteredData?.length > 0) {
       handlePokemonList(filteredData);
@@ -46,10 +47,10 @@ export function SortSelect({ handleCloseButton }: Props) {
   };
 
   const onReverseSortBy = () => {
-    const list: IPokemon[] = convertPokeData(
-      JSON.parse(JSON.stringify(pokemonList))
+    if (!resetList) return;
+    const filteredData: IPokemon[] = resetList.sort(
+      (a, b) => a[select] - b[select]
     );
-    const filteredData: IPokemon[] = list.sort((a, b) => a[select] - b[select]);
 
     if (filteredData?.length > 0) {
       handlePokemonList(filteredData);
