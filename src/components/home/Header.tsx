@@ -5,6 +5,8 @@ import { BsFillBookmarkPlusFill } from "react-icons/bs";
 import ListProvider from "@/provider/SortProvider";
 import pokemonList from "@/json/pokemonList.json";
 import { convertPokeData } from "@/utils/converter";
+import types from "@/json/types.json";
+import TypeProvider from "@/provider/TypeProvider";
 
 export default function Header() {
   return (
@@ -28,7 +30,9 @@ export default function Header() {
         >
           <BsFillBookmarkPlusFill className="w-[30px] h-[30px]" />
         </Link>
-        <TypeButton />
+        <TypeProvider type={types}>
+          <TypeButton />
+        </TypeProvider>
       </div>
     </header>
   );

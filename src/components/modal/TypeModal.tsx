@@ -1,15 +1,17 @@
 "use client";
 
 import ModalPortal from "@/portal/ModalPortal";
-import types from "@/json/types.json";
+import { TypeContext } from "@/provider/TypeProvider";
 import { getTypeIcon, getTypeKo } from "@/utils/converter";
 import { useRouter } from "next/navigation";
+import { useContext } from "react";
 
 type Props = {
   handleCloseModal: () => void;
 };
 
 export function TypeModal({ handleCloseModal }: Props) {
+  const types = useContext(TypeContext);
   const router = useRouter();
 
   function onTypeButton(type: string) {
@@ -32,7 +34,7 @@ export function TypeModal({ handleCloseModal }: Props) {
             타입을 선택해주세요
           </label>
           <ul className="w-full flex-grow p-2 grid [grid-template-columns:repeat(3,60px)] gap-2 items-center justify-center">
-            {types.map((item, i) => {
+            {types?.map((item, i) => {
               return (
                 <li key={i}>
                   <button

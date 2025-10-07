@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent } from "../ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 import {
@@ -10,11 +12,12 @@ import {
 import { IPokemon } from "@/interface/IPokemon";
 import { Badge } from "../ui/badge";
 import { useMemo } from "react";
-import types from "@/json/types.json";
 import TypeEffectiveness from "./TypeEffectiveness";
+import { IServerType } from "@/interface/IServerType";
 
 type Props = {
   pokemon: IPokemon;
+  types: IServerType[];
 };
 
 // 2배, 반감, 0배에 같은 타입이 존재할 경우 해당 타입의 값을 필터링 해주는 함수
@@ -75,7 +78,7 @@ function TypeBadge({ type }: { type: string }) {
   );
 }
 
-export default function TabWrapper({ pokemon }: Props) {
+export default function TabWrapper({ pokemon, types }: Props) {
   const type = useMemo(() => {
     const initial = {
       doubleFrom: [] as string[],
