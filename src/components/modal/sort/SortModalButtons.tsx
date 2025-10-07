@@ -1,43 +1,42 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import {
-  convertPokeData,
-  getColor,
-  getTypeConvertData,
-  getTypeKo,
-} from "@/utils/converter";
-import { useCurrentPokemonList, usePokemonList } from "@/hooks";
-import pokemonList from "@/json/pokemonList.json";
+import { getColor, getTypeKo } from "@/utils/converter";
+import { usePokemonList } from "@/hooks";
+import type { IPokemon } from "@/interface/IPokemon";
 
 type Props = {
+  resetList: IPokemon[];
   title: string;
   list: string[];
   type: "type" | "gene";
   handleCloseButton: () => void;
 };
 
-export function SortButtons({ title, list, type, handleCloseButton }: Props) {
+export function SortModalButtons({
+  resetList,
+  title,
+  list,
+  type,
+  handleCloseButton,
+}: Props) {
   const { handlePokemonList } = usePokemonList();
-  const { handleChangeCurrentPokeList } = useCurrentPokemonList();
 
   const onSort = (sortData: string, type: string) => {
     let filteredData = [];
     if (type === "type") {
-      filteredData = pokemonList.filter((poke) => {
-        const result = getTypeConvertData(poke.pokeTypes)?.find(
-          (type) => type === sortData
-        );
+      filteredData = resetList.filter((poke: IPokemon) => {
+        const result = poke.types?.find((type) => type === sortData);
         return result ? true : false;
       });
     } else {
-      filteredData = pokemonList.filter((poke) => poke.generate === sortData);
+      filteredData = resetList.filter(
+        (poke: IPokemon) => poke.generate === sortData
+      );
     }
 
     if (filteredData?.length > 0) {
-      const setting = convertPokeData(filteredData);
-      handlePokemonList(setting);
-      handleChangeCurrentPokeList(setting.slice(0, 20));
+      handlePokemonList(filteredData);
     }
 
     handleCloseButton();

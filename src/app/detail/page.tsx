@@ -7,6 +7,7 @@ import megaList from "@/json/mega.json";
 import { convertOnePoke } from "@/utils/converter";
 import DetailHeader from "@/components/detail/DetailHeader";
 import { notFound } from "next/navigation";
+import types from "@/json/types.json";
 
 type SearchParams = {
   id: string;
@@ -61,7 +62,7 @@ export default async function Detail({ searchParams }: Props) {
         </div>
         <div className="md:col-span-7 lg:col-span-8">
           <StatCard pokemon={pokemon} />
-          <TabWrapper pokemon={pokemon} />
+          <TabWrapper pokemon={pokemon} types={types} />
         </div>
       </section>
     </main>

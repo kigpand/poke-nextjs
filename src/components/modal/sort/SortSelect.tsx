@@ -1,13 +1,13 @@
 "use client";
+
 import { SortType } from "@/types/SortType";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { convertPokeData } from "@/utils/converter";
 import { IPokemon } from "@/interface/IPokemon";
-import { useCurrentPokemonList, usePokemonList } from "@/hooks";
-import pokemonList from "@/json/pokemonList.json";
+import { usePokemonList } from "@/hooks";
 
 type Props = {
+  resetList: IPokemon[];
   handleCloseButton: () => void;
 };
 
@@ -24,39 +24,28 @@ const SORT_LABELS: Record<SortType, string> = {
   allStat: "총합",
 };
 
-export function SortSelect({ handleCloseButton }: Props) {
+export function SortSelect({ resetList, handleCloseButton }: Props) {
   const [select, setSelect] = useState<SortType>("id");
   const { handlePokemonList } = usePokemonList();
-  const { handleChangeCurrentPokeList } = useCurrentPokemonList();
 
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer w-full hover:font-bold";
 
   const onSortBy = () => {
-    const list: IPokemon[] = convertPokeData(
-      JSON.parse(JSON.stringify(pokemonList))
+    const filteredData: IPokemon[] = [...resetList].sort(
+      (a, b) => b[select] - a[select]
     );
-    let filteredData: IPokemon[] = list.sort((a, b) => b[select] - a[select]);
 
-    if (filteredData?.length > 0) {
-      handlePokemonList(filteredData);
-      handleChangeCurrentPokeList(filteredData.slice(0, 20));
-    }
-
+    handlePokemonList(filteredData);
     handleCloseButton();
   };
 
   const onReverseSortBy = () => {
-    const list: IPokemon[] = convertPokeData(
-      JSON.parse(JSON.stringify(pokemonList))
+    const filteredData: IPokemon[] = [...resetList].sort(
+      (a, b) => a[select] - b[select]
     );
-    const filteredData: IPokemon[] = list.sort((a, b) => a[select] - b[select]);
 
-    if (filteredData?.length > 0) {
-      handlePokemonList(filteredData);
-      handleChangeCurrentPokeList(filteredData.slice(0, 20));
-    }
-
+    handlePokemonList(filteredData);
     handleCloseButton();
   };
 
@@ -89,7 +78,7 @@ export function SortSelect({ handleCloseButton }: Props) {
           <button
             type="button"
             className={cn(list_style, "text-black border-gray-300")}
-            onClick={() => onSortBy()}
+            onClick={onSortBy}
             aria-label={`${SORT_LABELS[select]} 기준 높은 순으로 정렬`}
           >
             높은 순
@@ -98,7 +87,7 @@ export function SortSelect({ handleCloseButton }: Props) {
         <li>
           <button
             className={cn(list_style, "text-black border-gray-300")}
-            onClick={() => onReverseSortBy()}
+            onClick={onReverseSortBy}
             aria-label={`${SORT_LABELS[select]} 기준 낮은 순으로 정렬`}
           >
             낮은 순

@@ -1,6 +1,6 @@
 import TypeContainer from "@/components/pokeType/TypeContainer";
 import { buttonVariants } from "@/components/ui/button";
-import typeList from "@/json/types.json";
+import types from "@/json/types.json";
 import { getTypeIcon, typeConvertDamegeData } from "@/utils/converter";
 import { Home } from "lucide-react";
 import Image from "next/image";
@@ -17,7 +17,7 @@ export default async function Type({ searchParams }: Props) {
   const params = await searchParams;
   const type = params.type;
   const normalized = (type || "").toLowerCase();
-  const findType = typeList.find((list) => list.name === normalized);
+  const findType = types.find((list) => list.name === normalized);
 
   if (!findType) {
     notFound();
