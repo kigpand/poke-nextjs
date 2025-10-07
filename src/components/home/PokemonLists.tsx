@@ -48,7 +48,7 @@ export default function PokemonLists() {
       align: "start",
       behavior: "auto",
     });
-  }, [pokemonList]); //
+  }, [pokemonList]);
 
   return (
     <div className="w-[100%] h-[80vh]">
