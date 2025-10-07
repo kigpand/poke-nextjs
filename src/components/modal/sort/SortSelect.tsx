@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { cn } from "@/lib/utils";
 import { IPokemon } from "@/interface/IPokemon";
 import { usePokemonList } from "@/hooks";
-import { ListContext } from "@/provider/ListProvider";
+import { SortContext } from "@/provider/SortProvider";
 
 type Props = {
   handleCloseButton: () => void;
@@ -24,7 +24,7 @@ const SORT_LABELS: Record<SortType, string> = {
 };
 
 export function SortSelect({ handleCloseButton }: Props) {
-  const resetList = useContext(ListContext);
+  const resetList = useContext(SortContext);
   const [select, setSelect] = useState<SortType>("id");
   const { handlePokemonList } = usePokemonList();
 

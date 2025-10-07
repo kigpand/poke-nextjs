@@ -5,14 +5,14 @@ import { SortSelect } from "./sort/SortSelect";
 import { SortModalButtons } from "./sort/SortModalButtons";
 import { typeList, geneList } from "@/utils/sort";
 import { useContext } from "react";
-import { ListContext } from "@/provider/ListProvider";
+import { SortContext } from "@/provider/SortProvider";
 
 type Props = {
   handleCloseModal: () => void;
 };
 
 export function SortModal({ handleCloseModal }: Props) {
-  const resetList = useContext(ListContext);
+  const resetList = useContext(SortContext);
   const { handlePokemonList } = usePokemonList();
 
   function onResetBtn() {
