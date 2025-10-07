@@ -1,6 +1,7 @@
 import type { IPokemon } from "@/interface/IPokemon";
 import { usePokemonStore } from "@/store/pokemonStore";
 import { usePokemonList } from "./usePokemonList";
+import { CURRENT_COUNT } from "@/constants/pokemonList";
 
 export function useCurrentPokemonList() {
   const { handlePokemonList } = usePokemonList();
@@ -15,7 +16,7 @@ export function useCurrentPokemonList() {
   }
 
   async function handleResetCurrentList(reset: IPokemon[]) {
-    setCurrentList(reset.slice(0, 20));
+    setCurrentList(reset.slice(0, CURRENT_COUNT));
     handlePokemonList(reset);
   }
 
