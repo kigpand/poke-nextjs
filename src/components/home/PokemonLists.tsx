@@ -1,7 +1,7 @@
 "use client";
 
-import { useCurrentPokemonList, usePokemonList } from "@/hooks";
-import { forwardRef, useEffect, useMemo, useRef } from "react";
+import { usePokemonList } from "@/hooks";
+import { forwardRef, useEffect, useRef } from "react";
 import {
   VirtuosoGrid,
   GridComponents,
@@ -23,24 +23,9 @@ const gridComponents = {
   ),
 };
 
-const PAGE_COUNT = 9;
-
 export default function PokemonLists() {
   const { pokemonList } = usePokemonList();
-  const { currentList, handleAddCurrentList } = useCurrentPokemonList();
   const gridRef = useRef<VirtuosoGridHandle>(null);
-
-  const canLoadMore = useMemo(
-    () => currentList.length < pokemonList.length,
-    [currentList.length, pokemonList.length]
-  );
-
-  const loadMore = () => {
-    if (!canLoadMore) return;
-    const count = currentList.length;
-    const next = pokemonList.slice(count, count + PAGE_COUNT);
-    if (next.length > 0) handleAddCurrentList(next);
-  };
 
   useEffect(() => {
     gridRef.current?.scrollToIndex({
@@ -54,9 +39,8 @@ export default function PokemonLists() {
     <div className="w-[100%] h-[80vh]">
       <VirtuosoGrid
         ref={gridRef}
-        data={currentList}
+        data={pokemonList}
         overscan={200}
-        endReached={loadMore}
         components={gridComponents as GridComponents}
         itemContent={(_, item) => <PokemonBox pokemon={item} />}
       />

@@ -1,6 +1,6 @@
 "use client";
 import ModalPortal from "@/portal/ModalPortal";
-import { useCurrentPokemonList } from "@/hooks";
+import { usePokemonList } from "@/hooks";
 import { SortSelect } from "./sort/SortSelect";
 import { SortModalButtons } from "./sort/SortModalButtons";
 import { typeList, geneList } from "@/utils/sort";
@@ -13,11 +13,11 @@ type Props = {
 
 export function SortModal({ handleCloseModal }: Props) {
   const resetList = useContext(ListContext);
-  const { handleResetCurrentList } = useCurrentPokemonList();
+  const { handlePokemonList } = usePokemonList();
 
   function onResetBtn() {
     if (!resetList) return alert("오류 발생");
-    handleResetCurrentList(resetList);
+    handlePokemonList(resetList);
     handleCloseModal();
   }
 

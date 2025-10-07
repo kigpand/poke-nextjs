@@ -2,9 +2,8 @@
 
 import { cn } from "@/lib/utils";
 import { getColor, getTypeKo } from "@/utils/converter";
-import { useCurrentPokemonList, usePokemonList } from "@/hooks";
+import { usePokemonList } from "@/hooks";
 import type { IPokemon } from "@/interface/IPokemon";
-import { CURRENT_COUNT } from "@/constants/pokemonList";
 
 type Props = {
   resetList: IPokemon[];
@@ -22,7 +21,6 @@ export function SortModalButtons({
   handleCloseButton,
 }: Props) {
   const { handlePokemonList } = usePokemonList();
-  const { handleChangeCurrentPokeList } = useCurrentPokemonList();
 
   const onSort = (sortData: string, type: string) => {
     let filteredData = [];
@@ -39,7 +37,6 @@ export function SortModalButtons({
 
     if (filteredData?.length > 0) {
       handlePokemonList(filteredData);
-      handleChangeCurrentPokeList(filteredData.slice(0, CURRENT_COUNT));
     }
 
     handleCloseButton();
