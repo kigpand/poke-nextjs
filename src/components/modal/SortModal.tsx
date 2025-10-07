@@ -31,7 +31,10 @@ export function SortModal({ handleCloseModal }: Props) {
           id="sort-modal"
           className="bg-background text-foreground w-[300px] pt-2 pb-5 px-2 border border-foreground rounded-lg"
         >
-          <SortSelect handleCloseButton={handleCloseModal} />
+          <SortSelect
+            resetList={resetList ?? []}
+            handleCloseButton={handleCloseModal}
+          />
           <SortModalButtons
             resetList={resetList ?? []}
             title="타입"
