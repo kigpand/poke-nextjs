@@ -8,6 +8,7 @@ import {
   VirtuosoGridHandle,
 } from "react-virtuoso";
 import { PokemonBox } from "../common";
+import { useSearchParams } from "next/navigation";
 
 const gridComponents = {
   List: forwardRef<HTMLUListElement, React.HTMLAttributes<HTMLUListElement>>(
@@ -24,8 +25,11 @@ const gridComponents = {
 };
 
 export default function PokemonLists() {
+  const searchParams = useSearchParams();
   const { pokemonList } = usePokemonList();
   const gridRef = useRef<VirtuosoGridHandle>(null);
+
+  console.log(searchParams.get("type"));
 
   useEffect(() => {
     gridRef.current?.scrollToIndex({

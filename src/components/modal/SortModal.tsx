@@ -1,23 +1,20 @@
 "use client";
 import ModalPortal from "@/portal/ModalPortal";
-import { usePokemonList } from "@/hooks";
 import { SortSelect } from "./sort/SortSelect";
 import { SortModalButtons } from "./sort/SortModalButtons";
 import { typeList, geneList } from "@/utils/sort";
-import { useContext } from "react";
-import { SortContext } from "@/provider/SortProvider";
+import { useRouter } from "next/navigation";
+import { PATH } from "@/constants/path";
 
 type Props = {
   handleCloseModal: () => void;
 };
 
 export function SortModal({ handleCloseModal }: Props) {
-  const resetList = useContext(SortContext);
-  const { handlePokemonList } = usePokemonList();
+  const router = useRouter();
 
   function onResetBtn() {
-    if (!resetList) return alert("오류 발생");
-    handlePokemonList(resetList);
+    router.push(PATH.home);
     handleCloseModal();
   }
 
@@ -31,19 +28,14 @@ export function SortModal({ handleCloseModal }: Props) {
           id="sort-modal"
           className="bg-background text-foreground w-[300px] pt-2 pb-5 px-2 border border-foreground rounded-lg"
         >
-          <SortSelect
-            resetList={resetList ?? []}
-            handleCloseButton={handleCloseModal}
-          />
+          <SortSelect handleCloseButton={handleCloseModal} />
           <SortModalButtons
-            resetList={resetList ?? []}
             title="타입"
             type="type"
             list={typeList}
             handleCloseButton={handleCloseModal}
           />
           <SortModalButtons
-            resetList={resetList ?? []}
             title="세대"
             type="gene"
             list={geneList}

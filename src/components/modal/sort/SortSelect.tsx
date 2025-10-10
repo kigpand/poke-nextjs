@@ -3,11 +3,10 @@
 import { SortType } from "@/types/SortType";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { IPokemon } from "@/interface/IPokemon";
-import { usePokemonList } from "@/hooks";
+import { useRouter } from "next/navigation";
+import { PATH } from "@/constants/path";
 
 type Props = {
-  resetList: IPokemon[];
   handleCloseButton: () => void;
 };
 
@@ -24,28 +23,20 @@ const SORT_LABELS: Record<SortType, string> = {
   allStat: "총합",
 };
 
-export function SortSelect({ resetList, handleCloseButton }: Props) {
+export function SortSelect({ handleCloseButton }: Props) {
   const [select, setSelect] = useState<SortType>("id");
-  const { handlePokemonList } = usePokemonList();
+  const router = useRouter();
 
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer w-full hover:font-bold";
 
   const onSortBy = () => {
-    const filteredData: IPokemon[] = [...resetList].sort(
-      (a, b) => b[select] - a[select]
-    );
-
-    handlePokemonList(filteredData);
+    router.push(`${PATH.home}?sortType=${select}&sorting=asc`);
     handleCloseButton();
   };
 
   const onReverseSortBy = () => {
-    const filteredData: IPokemon[] = [...resetList].sort(
-      (a, b) => a[select] - b[select]
-    );
-
-    handlePokemonList(filteredData);
+    router.push(`${PATH.home}?sortType=${select}&sorting=desc`);
     handleCloseButton();
   };
 
