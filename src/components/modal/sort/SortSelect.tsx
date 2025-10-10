@@ -30,13 +30,13 @@ export function SortSelect({ handleCloseButton }: Props) {
   const list_style =
     "p-1 text-center text-xs bg-white border cursor-pointer w-full hover:font-bold";
 
-  const onSortBy = () => {
-    router.push(`${PATH.home}?sortType=${select}&sorting=asc`);
+  const onDescSortBy = () => {
+    router.push(`${PATH.home}?sortType=${select}&sorting=desc`);
     handleCloseButton();
   };
 
-  const onReverseSortBy = () => {
-    router.push(`${PATH.home}?sortType=${select}&sorting=desc`);
+  const onAscSortBy = () => {
+    router.push(`${PATH.home}?sortType=${select}&sorting=asc`);
     handleCloseButton();
   };
 
@@ -69,7 +69,7 @@ export function SortSelect({ handleCloseButton }: Props) {
           <button
             type="button"
             className={cn(list_style, "text-black border-gray-300")}
-            onClick={onSortBy}
+            onClick={onDescSortBy}
             aria-label={`${SORT_LABELS[select]} 기준 높은 순으로 정렬`}
           >
             높은 순
@@ -78,7 +78,7 @@ export function SortSelect({ handleCloseButton }: Props) {
         <li>
           <button
             className={cn(list_style, "text-black border-gray-300")}
-            onClick={onReverseSortBy}
+            onClick={onAscSortBy}
             aria-label={`${SORT_LABELS[select]} 기준 낮은 순으로 정렬`}
           >
             낮은 순
