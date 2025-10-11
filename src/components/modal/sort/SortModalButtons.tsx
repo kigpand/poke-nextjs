@@ -2,11 +2,10 @@
 
 import { cn } from "@/lib/utils";
 import { getColor, getTypeKo } from "@/utils/converter";
-import { usePokemonList } from "@/hooks";
-import type { IPokemon } from "@/interface/IPokemon";
+import { useRouter } from "next/navigation";
+import { PATH } from "@/constants/path";
 
 type Props = {
-  resetList: IPokemon[];
   title: string;
   list: string[];
   type: "type" | "gene";
@@ -14,31 +13,17 @@ type Props = {
 };
 
 export function SortModalButtons({
-  resetList,
   title,
   list,
   type,
   handleCloseButton,
 }: Props) {
-  const { handlePokemonList } = usePokemonList();
+  const router = useRouter();
 
   const onSort = (sortData: string, type: string) => {
-    let filteredData = [];
-    if (type === "type") {
-      filteredData = resetList.filter((poke: IPokemon) => {
-        const result = poke.types?.find((type) => type === sortData);
-        return result ? true : false;
-      });
-    } else {
-      filteredData = resetList.filter(
-        (poke: IPokemon) => poke.generate === sortData
-      );
-    }
-
-    if (filteredData?.length > 0) {
-      handlePokemonList(filteredData);
-    }
-
+    router.push(
+      `${PATH.home}?${type === "type" ? `type=` : `generate=`}${sortData}`
+    );
     handleCloseButton();
   };
 
@@ -76,7 +61,7 @@ export function SortModalButtons({
                   onClick={() => onSort(gene, "gene")}
                   aria-label={`${gene} 세대로 필터`}
                 >
-                  {gene}
+                  {gene}세대
                 </button>
               </li>
             );

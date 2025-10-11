@@ -24,7 +24,7 @@ const gridComponents = {
 };
 
 export default function PokemonLists() {
-  const { pokemonList } = usePokemonList();
+  const { filteredList } = usePokemonList();
   const gridRef = useRef<VirtuosoGridHandle>(null);
 
   useEffect(() => {
@@ -33,13 +33,13 @@ export default function PokemonLists() {
       align: "start",
       behavior: "auto",
     });
-  }, [pokemonList]);
+  }, [filteredList]);
 
   return (
     <div className="w-[100%] h-[80vh]">
       <VirtuosoGrid
         ref={gridRef}
-        data={pokemonList}
+        data={filteredList}
         overscan={200}
         components={gridComponents as GridComponents}
         itemContent={(_, item) => <PokemonBox pokemon={item} />}

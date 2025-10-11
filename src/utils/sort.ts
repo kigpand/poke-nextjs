@@ -18,13 +18,4 @@ export const typeList = [
   "dark",
   "fairy",
 ];
-export const geneList = [
-  "1세대",
-  "2세대",
-  "3세대",
-  "4세대",
-  "5세대",
-  "6세대",
-  "7세대",
-  "8세대",
-];
+export const geneList = ["1", "2", "3", "4", "5", "6", "7", "8"];
