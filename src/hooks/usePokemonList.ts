@@ -44,7 +44,9 @@ export function usePokemonList() {
 
     // generate filter
     if (generateParam) {
-      return list.filter((poke: IPokemon) => poke.generate === generateParam);
+      return list.filter(
+        (poke: IPokemon) => poke.generate === `${generateParam}세대`
+      );
     }
 
     return list;
