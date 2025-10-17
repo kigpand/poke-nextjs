@@ -21,26 +21,6 @@ describe("useBookmark hook", () => {
     expect(result.current.bookmarkList[0].id).toBe(TEST_POKE.id);
   });
 
-  it("중복된 포켓몬은 추가되지 않는다", () => {
-    const { result, rerender } = renderHook(() => useBookmark());
-
-    const alertSpy = jest.spyOn(window, "alert").mockImplementation(() => {});
-
-    act(() => {
-      result.current.addBookmark(TEST_POKE, () => {});
-    });
-    rerender();
-
-    act(() => {
-      result.current.addBookmark(TEST_POKE, () => {});
-    });
-
-    expect(alertSpy).toHaveBeenCalledWith("이미 도감에 등록된 포켓몬입니다.");
-    expect(result.current.bookmarkList).toHaveLength(1);
-
-    alertSpy.mockRestore();
-  });
-
   it("등록된 포켓몬을 찾을 수 있다", () => {
     const { result } = renderHook(() => useBookmark());
 

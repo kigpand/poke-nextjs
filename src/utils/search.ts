@@ -1,4 +1,5 @@
 import { RefObject } from "react";
+import { toast } from "sonner";
 
 export async function handleSearch(
   searchRef: RefObject<HTMLInputElement | null>,
@@ -9,6 +10,10 @@ export async function handleSearch(
   const res = await fetch(`/api/search?value=${value}`);
   const data = await res.json();
   if (data) callback(data);
-  else alert("올바른 도감번호를 입력해주세요.");
+  else {
+    toast.error("올바른 도감 번호 또는 포켓몬 명을 입력해주세요", {
+      duration: 1000,
+    });
+  }
   searchRef.current.value = "";
 }
