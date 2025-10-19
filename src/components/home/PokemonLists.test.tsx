@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import PokemonLists from "./PokemonLists";
 
 // VirtuosoGrid를 가벼운 목으로 대체
@@ -50,7 +50,7 @@ describe("PokemonLists (implementation)", () => {
   });
 
   it("pokemonList를 입력받은 개수만큼 렌더링한다", () => {
-    usePokemonList.mockReturnValue({ pokemonList: makeList(50) });
+    usePokemonList.mockReturnValue({ filteredList: makeList(50) });
 
     render(<PokemonLists />);
 
