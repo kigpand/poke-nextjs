@@ -9,13 +9,6 @@ export function useBookmark() {
     useBookmarkStore();
 
   function addBookmark(pokeItem: IPokemon, callback: Function) {
-    const result = bookmarkList.find(
-      (pokeList: IPokemon) => pokeList.id === pokeItem.id
-    );
-    if (result) {
-      alert("이미 도감에 등록된 포켓몬입니다.");
-      return;
-    }
     addBookmarkItem(pokeItem);
     callback();
   }

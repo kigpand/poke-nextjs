@@ -3,7 +3,8 @@
 import { Heart } from "lucide-react";
 import { Button } from "../ui/button";
 import { useBookmark } from "@/hooks";
-import { IPokemon } from "@/interface/IPokemon";
+import { toast } from "sonner";
+import type { IPokemon } from "@/interface/IPokemon";
 
 type Props = {
   pokemon: IPokemon;
@@ -17,7 +18,12 @@ export default function BookmarkButton({ pokemon }: Props) {
     if (isBookmark) {
       removeBookmark(pokemon);
     } else {
-      addBookmark(pokemon, () => alert("도감에 등록되었습니다"));
+      addBookmark(pokemon, () =>
+        toast.success("도감 추가", {
+          description: `${pokemon.name}이(가) 도감에 등록되었습니다.`,
+          duration: 1000,
+        })
+      );
     }
   }
   return (
