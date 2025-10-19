@@ -2,7 +2,7 @@
 import ModalPortal from "@/portal/ModalPortal";
 import { SortSelect } from "./sort/SortSelect";
 import { SortModalButtons } from "./sort/SortModalButtons";
-import { typeList, geneList } from "@/utils/sort";
+import { typeList, geneList } from "@/constants/default";
 import { useRouter } from "next/navigation";
 import { PATH } from "@/constants/path";
 
