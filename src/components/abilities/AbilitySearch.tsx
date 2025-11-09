@@ -2,7 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import type { AbilitySortType } from "@/types/SortType";
-import type { AbilityType } from "./AbilityList";
+import type { AbilityType } from "./AbilityLists";
 
 type Props = {
   list: AbilityType[];
