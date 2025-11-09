@@ -58,7 +58,7 @@ export default function AboutCard({ pokemon }: Props) {
           <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">
             특성
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2 cursor-default">
             {pokemon.abilities.map((ab) => (
               <Tooltip key={ab}>
                 <TooltipTrigger asChild>

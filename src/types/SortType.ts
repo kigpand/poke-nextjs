@@ -9,3 +9,5 @@ export type SortType =
   | "specialDefense"
   | "speed"
   | "allStat";
+
+export type AbilitySortType = "id" | "name";
