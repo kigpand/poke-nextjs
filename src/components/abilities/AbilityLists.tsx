@@ -52,7 +52,6 @@ export default function AbilityLists({ abilities }: Props) {
         handleChangeSearch={setSearch}
         handleChangeSort={setSort}
       />
-
       {filtered.length === 0 ? (
         <div className="flex h-40 flex-col items-center justify-center gap-2 rounded-lg border border-dashed text-sm text-muted-foreground">
           <span>검색 결과가 없습니다.</span>

@@ -32,6 +32,7 @@ export default function AbilitySearch({
         </label>
         <input
           id={searchInputId}
+          className="w-[250px] p-2 rounded border-2 border-gray-200 outline-0"
           placeholder="특성 이름으로 검색해보세요"
           value={search}
           onChange={(e) => handleChangeSearch(e.target.value)}
