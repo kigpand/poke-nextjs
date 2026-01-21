@@ -9,11 +9,27 @@ type Props = {
 };
 
 export default function ModalPortal({ component, handleCloseModal }: Props) {
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState<boolean>(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        handleCloseModal();
+      }
+    }
+
+    if (mounted) {
+      window.addEventListener("keydown", onKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [handleCloseModal, mounted]);
 
   if (!mounted) return null;
 
