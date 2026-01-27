@@ -19,7 +19,7 @@ export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
       >
         <span
           aria-label="포켓몬 넘버"
-          className="h-6 flex w-full text-xl text-gray-400 font-semibold"
+          className="h-6 flex w-full text-xl text-gray-500 font-semibold"
         >
           No.{pokemon.id}
         </span>
