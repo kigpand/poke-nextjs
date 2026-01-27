@@ -1,4 +1,5 @@
 import "@testing-library/jest-dom";
+import React from "react";
 
 jest.mock("next/navigation", () => {
   const push = jest.fn();
@@ -14,3 +15,9 @@ jest.mock("next/navigation", () => {
     useSearchParams: () => new URLSearchParams(),
   };
 });
+
+jest.mock("next/image", () => ({
+  __esModule: true,
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) =>
+    React.createElement("img", props),
+}));
