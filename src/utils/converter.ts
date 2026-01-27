@@ -35,8 +35,7 @@ export function getLineColor(type: string) {
 
 /** 속성에 맞는 텍스트 색상 반환 함수 */
 export function getTextColor(type: string) {
-  const key = normalizeType(type);
-  return TYPE_DATA[key]?.textColor || DEFAULT_TEXT_COLOR;
+  return "#ffffff";
 }
 
 /** 영어 이름에 맞는 한글 속성 반환 함수  */

@@ -38,13 +38,13 @@ describe("converter utils", () => {
     });
 
     it("색상/라인/텍스트 색상(getColor/getLineColor/getTextColor)", () => {
-      expect(getColor("불꽃")).toBe("#e56c3e");
+      expect(getColor("불꽃")).toBe("#b95731");
       expect(getLineColor("불꽃")).toBe("#b60000");
-      expect(getTextColor("불꽃")).toBe("#fff3e0");
+      expect(getTextColor("불꽃")).toBe("#ffffff");
 
-      expect(getColor("없쪙")).toBe("#ada594");
+      expect(getColor("없쪙")).toBe("#7c766b");
       expect(getLineColor("없쪙")).toBe("#5a5a5a");
-      expect(getTextColor("없쪙")).toBe("#f9f9f9");
+      expect(getTextColor("없쪙")).toBe("#ffffff");
     });
 
     it("문자열 타입 리스트를 배열로 변환(getTypeConvertData)", () => {
