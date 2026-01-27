@@ -19,12 +19,15 @@ type Props = {
 
 function StatRow({ label, value }: { label: string; value: number }) {
   const pct = Math.min(100, Math.round((value / 200) * 100));
+  const labelId = `stat-${label}`;
   return (
     <div className="grid grid-cols-12 items-center gap-3">
-      <div className="col-span-4 text-sm text-muted-foreground">{label}</div>
+      <div id={labelId} className="col-span-4 text-sm text-muted-foreground">
+        {label}
+      </div>
       <div className="col-span-2 font-medium tabular-nums">{value}</div>
       <div className="col-span-6">
-        <Progress value={pct} className="h-2" />
+        <Progress value={pct} className="h-2" aria-labelledby={labelId} />
       </div>
     </div>
   );

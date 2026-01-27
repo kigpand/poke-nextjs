@@ -12,7 +12,7 @@ export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
     <li className="w-full h-[200px] p-1 cursor-pointer border hover:bg-gray-200 border-[#e8e8e8]">
       <Link
         href={`/detail?id=${pokemon.id}`}
-        prefetch
+        prefetch={false}
         className="w-full h-full flex flex-col"
         aria-label={`${pokemon.name} 상세 페이지로 이동`}
       >
@@ -26,6 +26,8 @@ export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
           src={pokemon.imageUrl}
           alt={pokemon.name}
           className="h-[140px] object-contain"
+          loading="lazy"
+          decoding="async"
           draggable={false}
         />
         <h3
