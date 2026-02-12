@@ -1,6 +1,16 @@
+import { ThreeCanvas } from "@/components/three";
+
 export default function Loading() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-6 md:py-8">
+      <div className="mb-6 flex items-center justify-center gap-4">
+        <div className="h-24 w-24">
+          <ThreeCanvas className="h-full w-full" />
+        </div>
+        <div className="text-sm text-muted-foreground">
+          상세 정보를 불러오는 중...
+        </div>
+      </div>
       <header className="mb-6 flex flex-col items-start justify-between gap-4 md:mb-8 md:flex-row md:items-center">
         <nav className="flex items-center w-full flex-col gap-4 md:gap-0 md:flex-row">
           <div className="flex gap-1 w-full justify-end md:w-auto">

@@ -1,14 +1,31 @@
+"use client";
+
 import type { IPokemon } from "@/interface/IPokemon";
 import { cn } from "@/lib/utils";
+import { useRouteLoadingStore } from "@/store/routeLoadingStore";
 import Image from "next/image";
 import Link from "next/link";
-import { memo } from "react";
+import { memo, type MouseEvent } from "react";
 
 type Props = {
   pokemon: IPokemon;
 };
 
 export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
+  const setNavigating = useRouteLoadingStore((state) => state.setNavigating);
+  const handleNavigate = (event: MouseEvent<HTMLAnchorElement>) => {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    ) {
+      return;
+    }
+    setNavigating(true);
+  };
+
   return (
     <li className="w-[220px] h-[220px] p-1 cursor-pointer border hover:bg-gray-200 border-[#e8e8e8]">
       <Link
@@ -16,6 +33,7 @@ export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
         prefetch={false}
         className="w-full h-full flex flex-col items-center"
         aria-label={`${pokemon.name} 상세 페이지로 이동`}
+        onClick={handleNavigate}
       >
         <span
           aria-label="포켓몬 넘버"
