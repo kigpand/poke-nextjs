@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { ThreeCanvas } from "@/components/three";
+import { MonsterBallCanvas } from "@/components/three";
 import { useRouteLoadingStore } from "@/store/routeLoadingStore";
 
 export default function RouteLoadingOverlay() {
@@ -29,6 +29,29 @@ export default function RouteLoadingOverlay() {
     if (isNavigating) startTimeRef.current = Date.now();
   }, [isNavigating]);
 
+  useEffect(() => {
+    if (process.env.NODE_ENV !== "development") return;
+    if (typeof performance === "undefined") return;
+    const startMark = performance
+      .getEntriesByName("route:navigate:start")
+      .at(-1);
+    if (!startMark) return;
+    performance.mark("route:navigate:end");
+    performance.measure(
+      "route:navigate",
+      "route:navigate:start",
+      "route:navigate:end"
+    );
+    const measure = performance.getEntriesByName("route:navigate").at(-1);
+    if (measure) {
+      console.info(
+        `[route] navigate duration: ${Math.round(
+          measure.duration
+        )}ms (${pathname})`
+      );
+    }
+  }, [pathname]);
+
   if (!isNavigating) return null;
 
   return (
@@ -39,7 +62,7 @@ export default function RouteLoadingOverlay() {
     >
       <div className="flex flex-col items-center gap-3 rounded-xl border bg-background/95 px-6 py-5 shadow-lg">
         <div className="h-24 w-24">
-          <ThreeCanvas className="h-full w-full" />
+          <MonsterBallCanvas className="h-full w-full" />
         </div>
         <span className="text-sm text-muted-foreground">
           상세 페이지로 이동 중...

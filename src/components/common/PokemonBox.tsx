@@ -23,6 +23,9 @@ export const PokemonBox = memo(function PokemonBox({ pokemon }: Props) {
     ) {
       return;
     }
+    if (process.env.NODE_ENV === "development" && typeof performance !== "undefined") {
+      performance.mark("route:navigate:start");
+    }
     setNavigating(true);
   };
 
