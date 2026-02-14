@@ -15,6 +15,8 @@ function MonsterBallScene() {
 
   useFrame((state) => {
     if (!groupRef.current) return;
+    groupRef.current.rotation.x = 0;
+    groupRef.current.rotation.y = 0;
     const t = state.clock.getElapsedTime();
     const cycle = 2.2;
     const phase = t % cycle;
