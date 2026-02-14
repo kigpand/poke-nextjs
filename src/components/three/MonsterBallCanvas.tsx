@@ -13,16 +13,26 @@ const Canvas = dynamic(
 function MonsterBallScene() {
   const groupRef = useRef<Group>(null);
 
-  useFrame((_, delta) => {
+  useFrame((state) => {
     if (!groupRef.current) return;
-    groupRef.current.rotation.x += delta * 0.3;
-    groupRef.current.rotation.y += delta * 0.8;
+    const t = state.clock.getElapsedTime();
+    const cycle = 2.2;
+    const phase = t % cycle;
+    const shakeDuration = 0.7;
+    if (phase < shakeDuration) {
+      const progress = phase / shakeDuration;
+      const ease = 1 - Math.pow(1 - progress, 3);
+      const wobble = Math.sin(progress * Math.PI * 6) * 0.25;
+      groupRef.current.rotation.z = wobble * (1 - ease);
+    } else {
+      groupRef.current.rotation.z = 0;
+    }
   });
 
   return (
     <>
       <ambientLight intensity={0.6} />
-      <directionalLight position={[2, 3, 4]} intensity={0.8} />
+      <directionalLight position={[2, 3, 4]} intensity={0.7} />
       <group ref={groupRef}>
         <mesh>
           <sphereGeometry args={[1, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
@@ -33,10 +43,6 @@ function MonsterBallScene() {
             args={[1, 32, 32, 0, Math.PI * 2, Math.PI / 2, Math.PI / 2]}
           />
           <meshStandardMaterial color="#f5f5f5" />
-        </mesh>
-        <mesh rotation={[Math.PI / 2, 0, 0]}>
-          <cylinderGeometry args={[1.02, 1.02, 0.12, 32]} />
-          <meshStandardMaterial color="#111111" />
         </mesh>
         <mesh position={[0, 0, 1.03]}>
           <circleGeometry args={[0.22, 32]} />
@@ -58,7 +64,11 @@ type Props = {
 export function MonsterBallCanvas({ className }: Props) {
   return (
     <div className={className}>
-      <Canvas camera={{ position: [0, 0, 3], fov: 50 }}>
+      <Canvas
+        camera={{ position: [0, 0, 3], fov: 50 }}
+        dpr={[1, 1.5]}
+        gl={{ antialias: true, powerPreference: "low-power" }}
+      >
         <MonsterBallScene />
       </Canvas>
     </div>
