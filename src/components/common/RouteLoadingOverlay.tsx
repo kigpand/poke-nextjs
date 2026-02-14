@@ -2,8 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
-import { MonsterBallCanvas } from "@/components/three";
 import { useRouteLoadingStore } from "@/store/routeLoadingStore";
+import PokeballLoader from "@/components/common/PokeballLoader";
 
 export default function RouteLoadingOverlay() {
   const pathname = usePathname();
@@ -60,13 +60,13 @@ export default function RouteLoadingOverlay() {
       role="status"
       aria-live="polite"
     >
-      <div className="flex flex-col items-center gap-3 rounded-xl border bg-background/95 px-6 py-5 shadow-lg">
-        <div className="h-24 w-24">
-          <MonsterBallCanvas className="h-full w-full" />
-        </div>
-        <span className="text-sm text-muted-foreground">
-          상세 페이지로 이동 중...
-        </span>
+        <div className="flex flex-col items-center gap-3 rounded-xl border bg-background/95 px-6 py-5 shadow-lg">
+          <div className="h-20 w-20">
+            <PokeballLoader className="h-full w-full pokeball-spin" />
+          </div>
+          <span className="text-sm text-muted-foreground">
+            상세 페이지로 이동 중...
+          </span>
       </div>
     </div>
   );
