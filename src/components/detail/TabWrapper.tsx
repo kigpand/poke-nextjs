@@ -144,31 +144,27 @@ export default function TabWrapper({ pokemon, types }: Props) {
 
       <TabsContent value="vs" className="mt-4">
         <Card>
-          <CardContent className="flex items-center gap-4 p-4">
-            <label className="text-sm font-bold text-[#000000] mr-2">
+          <CardContent className="space-y-4 p-4">
+            <label className="text-sm font-bold text-[#000000]">
               방어 상성
             </label>
-            {type.doubleFrom.length > 0 && (
+            <div className="grid gap-4 md:grid-cols-3">
               <TypeEffectiveness
                 title="효과가 좋음"
                 types={type.doubleFrom}
                 value={2}
               />
-            )}
-            {type.halfFrom.length > 0 && (
               <TypeEffectiveness
                 title="효과가 별로"
                 types={type.halfFrom}
                 value={0.5}
               />
-            )}
-            {type.noFrom.length > 0 && (
               <TypeEffectiveness
                 title="효과가 없음"
                 types={type.noFrom}
                 value={0}
               />
-            )}
+            </div>
           </CardContent>
         </Card>
       </TabsContent>
