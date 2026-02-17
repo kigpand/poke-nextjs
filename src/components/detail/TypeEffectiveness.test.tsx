@@ -3,6 +3,8 @@ import TypeEffectiveness from "./TypeEffectiveness";
 
 jest.mock("@/utils/converter", () => ({
   getColor: jest.fn(() => "rgba(0, 0, 255, 1)"),
+  getTypeIcon: jest.fn(() => "/type.svg"),
+  getTypeKo: jest.fn((type: string) => type),
 }));
 
 const typesList = [
