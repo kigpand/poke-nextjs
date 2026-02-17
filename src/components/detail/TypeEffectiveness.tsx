@@ -1,4 +1,4 @@
-import { getColor } from "@/utils/converter";
+import { getColor, getTypeIcon, getTypeKo } from "@/utils/converter";
 import { useMemo } from "react";
 
 interface ITypeText {
@@ -44,7 +44,17 @@ export default function TypeEffectiveness({ title, types, value }: Props) {
               aria-label={`${item.text}x${value / item.count}배`}
               key={i}
             >
-              <strong>{item.text}</strong>
+              <span className="flex items-center gap-1">
+                <img
+                  src={getTypeIcon(item.text)}
+                  alt=""
+                  aria-hidden="true"
+                  className="h-3.5 w-3.5"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <strong>{getTypeKo(item.text)}</strong>
+              </span>
               <span>
                 x
                 {value === 2
