@@ -50,16 +50,20 @@ function StatsRadar({ p }: { p: IPokemon }) {
     <div className="w-full h-64">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={data} outerRadius="80%">
-          <PolarGrid />
+          <PolarGrid stroke="#c4c4c4" strokeOpacity={0.6} />
           {/* 각 축의 라벨 */}
-          <PolarAngleAxis dataKey="stat" />
+          <PolarAngleAxis
+            dataKey="stat"
+            tick={{ fill: "#6b6b6b", fontSize: 12 }}
+          />
           {/* 반지름(값) 축의 범위 고정 */}
           <PolarRadiusAxis domain={[0, 200]} tickCount={6} tick={false} />
           <Radar
             dataKey="val"
             stroke={strokeColor}
             fill={fillColor}
-            fillOpacity={0.3}
+            strokeWidth={2}
+            fillOpacity={0.5}
           />
         </RadarChart>
       </ResponsiveContainer>

@@ -1,9 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import ImageCard from "./ImageCard";
 import { TEST_POKE } from "@/test/fixtures/pokemon";
-import { getLineColor } from "@/utils/converter";
+import { getLineColor, getTypeIcon } from "@/utils/converter";
 
-jest.mock("@/utils/converter", () => ({ getLineColor: jest.fn() }));
+jest.mock("@/utils/converter", () => ({
+  getLineColor: jest.fn(),
+  getTypeIcon: jest.fn(() => "/type.svg"),
+}));
 
 afterEach(() => {
   jest.clearAllMocks();
@@ -26,6 +29,7 @@ test("카드의 borderColor는 첫 번째 타입으로부터 계산된다", () =
   render(<ImageCard pokemon={{ ...TEST_POKE }} />);
 
   expect(getLineColor).toHaveBeenCalledWith(TEST_POKE.types![0]);
+  expect(getTypeIcon).toHaveBeenCalledWith(TEST_POKE.types![0]);
 
   const img = screen.getByRole("img", {
     name: `${TEST_POKE.name} 공식 아트워크`,

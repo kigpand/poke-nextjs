@@ -84,10 +84,13 @@ export default function TabWrapper({ pokemon, types }: Props) {
       doubleFrom: [] as string[],
       halfFrom: [] as string[],
       noFrom: [] as string[],
+      doubleTo: [] as string[],
+      halfTo: [] as string[],
+      noTo: [] as string[],
     };
 
     const mergedType = pokemon.types?.reduce((acc, type) => {
-      const result = types.find((item) => item.name === type);
+      const result = types?.find((item) => item.name === type);
       if (!result) return acc;
 
       const converted = typeConvertDamegeData(result);
@@ -96,6 +99,9 @@ export default function TabWrapper({ pokemon, types }: Props) {
         doubleFrom: [...acc.doubleFrom, ...converted.doubleFrom],
         halfFrom: [...acc.halfFrom, ...converted.halfFrom],
         noFrom: [...acc.noFrom, ...converted.noFrom],
+        doubleTo: [...acc.doubleTo, ...converted.doubleTo],
+        halfTo: [...acc.halfTo, ...converted.halfTo],
+        noTo: [...acc.noTo, ...converted.noTo],
       };
     }, initial);
 
@@ -144,31 +150,48 @@ export default function TabWrapper({ pokemon, types }: Props) {
 
       <TabsContent value="vs" className="mt-4">
         <Card>
-          <CardContent className="flex items-center gap-4 p-4">
-            <label className="text-sm font-bold text-[#000000] mr-2">
+          <CardContent className="space-y-4 p-4">
+            <label className="text-sm font-bold text-[#000000]">
               방어 상성
             </label>
-            {type.doubleFrom.length > 0 && (
+            <div className="grid gap-4 md:grid-cols-3">
               <TypeEffectiveness
                 title="효과가 좋음"
                 types={type.doubleFrom}
                 value={2}
               />
-            )}
-            {type.halfFrom.length > 0 && (
               <TypeEffectiveness
                 title="효과가 별로"
                 types={type.halfFrom}
                 value={0.5}
               />
-            )}
-            {type.noFrom.length > 0 && (
               <TypeEffectiveness
                 title="효과가 없음"
                 types={type.noFrom}
                 value={0}
               />
-            )}
+            </div>
+            <div className="h-px w-full bg-border/60" />
+            <label className="text-sm font-bold text-[#000000]">
+              공격 상성
+            </label>
+            <div className="grid gap-4 md:grid-cols-3">
+              <TypeEffectiveness
+                title="효과가 좋음"
+                types={type.doubleTo}
+                value={2}
+              />
+              <TypeEffectiveness
+                title="효과가 별로"
+                types={type.halfTo}
+                value={0.5}
+              />
+              <TypeEffectiveness
+                title="효과가 없음"
+                types={type.noTo}
+                value={0}
+              />
+            </div>
           </CardContent>
         </Card>
       </TabsContent>
