@@ -16,7 +16,7 @@ export default function TypeEffectiveness({ title, types, value }: Props) {
   const typeList = useMemo(() => {
     const map = new Map<string, ITypeText>();
 
-    types.forEach((type) => {
+    types?.forEach((type) => {
       if (map.has(type)) {
         map.set(type, { text: type, count: 2 });
       } else {
