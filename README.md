@@ -27,6 +27,12 @@ pokemon api를 활용한 포켓몬스터 도감용 사이트입니다
 
 ---
 
+## 🌐 데모
+
+https://poke-nextjs-eight.vercel.app/
+
+---
+
 ## 🧪 테스트 커버리지
 
 <!-- COVERAGE_START -->
