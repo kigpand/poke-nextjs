@@ -178,5 +178,15 @@
     "halfDamegeTo": "poison,steel,fire",
     "noDamegeFrom": "dragon",
     "noDamegeTo": ""
+  },
+  {
+    "id": 19,
+    "name": "stellar",
+    "doubleDamegeFrom": "",
+    "doubleDamegeTo": "",
+    "halfDamegeFrom": "",
+    "halfDamegeTo": "",
+    "noDamegeFrom": "",
+    "noDamegeTo": ""
   }
 ]
