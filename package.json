@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "update:pokemon": "node scripts/update-pokemon-json.mjs",
+    "update:types": "node scripts/update-types-json.mjs",
+    "update:abilities": "node scripts/update-ability-json.mjs"
   },
   "dependencies": {
     "@radix-ui/react-progress": "^1.1.7",
